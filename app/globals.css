@@ -1,26 +1,266 @@
+@import url('https://fonts.cdnfonts.com/css/axiforma');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ==================================================================
+   Custom utilities using the @utility directive
+   These must be defined early so @apply can use them in @layer base
+   ================================================================== */
+
+@utility border-border {
+  border-color: hsl(var(--border));
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@utility bg-background {
+  background-color: hsl(var(--background));
 }
 
-@media (prefers-color-scheme: dark) {
+@utility bg-card {
+  background-color: hsl(var(--card));
+}
+
+@utility text-foreground {
+  color: hsl(var(--foreground));
+}
+
+@utility text-primary-foreground {
+  color: hsl(var(--primary-foreground));
+}
+
+@utility bg-primary {
+  background-color: hsl(var(--primary));
+}
+
+@utility bg-secondary {
+  background-color: hsl(var(--secondary));
+}
+
+@utility text-secondary-foreground {
+  color: hsl(var(--secondary-foreground));
+}
+
+/* Add more custom utilities here if you use them with @apply elsewhere */
+
+/* ==================================================================
+   Design Tokens & Base Styles
+   ================================================================== */
+
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Initial simple values (overwritten below by full design system) */
+    --rich-black: 210 12% 8%;
+    --anti-flash-white: 0 0% 95%;
+    --primary: 140 75% 45%;
+    --accent: 50 100% 50%;
+    --frog: 120 40% 50%;
+    --background: 0 0% 98%;
+    --card: 0 0% 100%;
+    --primary-foreground: 0 0% 10%;
+
+    /* ============================================== */
+    /* Full Financial Education & Wellness Design System */
+    /* ============================================== */
+
+    --background: 100 20% 98%;
+    --foreground: 180 8% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 180 8% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 180 8% 8%;
+
+    --primary: 161 70% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 150 25% 95%;
+    --secondary-foreground: 160 50% 25%;
+
+    --muted: 150 15% 93%;
+    --muted-foreground: 160 10% 45%;
+
+    --accent: 168 76% 42%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 150 20% 88%;
+    --input: 150 20% 88%;
+    --ring: 161 70% 40%;
+
+    --radius: 0.75rem;
+
+    /* Extended Palette */
+    --rich-black: 180 8% 8%;
+    --dark-green: 160 80% 15%;
+    --bangladesh-green: 160 100% 20%;
+    --mountain-meadow: 161 70% 40%;
+    --caribbean-green: 168 76% 42%;
+    --anti-flash-white: 100 20% 98%;
+
+    --pine: 155 60% 25%;
+    --basil: 145 45% 35%;
+    --forest: 150 50% 20%;
+    --frog: 140 55% 45%;
+    --mint: 155 60% 85%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(161 70% 40%), hsl(168 76% 42%));
+    --gradient-subtle: linear-gradient(180deg, hsl(150 25% 98%), hsl(150 25% 95%));
+    --gradient-hero: linear-gradient(135deg, hsl(150 25% 97%) 0%, hsl(160 30% 95%) 50%, hsl(155 35% 93%) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px -2px hsl(160 50% 25% / 0.08);
+    --shadow-md: 0 8px 24px -8px hsl(160 50% 25% / 0.12);
+    --shadow-lg: 0 16px 48px -12px hsl(160 50% 25% / 0.15);
+    --shadow-glow: 0 0 40px hsl(161 70% 40% / 0.2);
+
+    /* Transitions */
+    --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 180 8% 8%;
+    --foreground: 100 20% 98%;
+
+    --card: 160 15% 12%;
+    --card-foreground: 100 20% 98%;
+
+    --popover: 160 15% 12%;
+    --popover-foreground: 100 20% 98%;
+
+    --primary: 161 70% 50%;
+    --primary-foreground: 180 8% 8%;
+
+    --secondary: 160 20% 18%;
+    --secondary-foreground: 155 60% 85%;
+
+    --muted: 160 15% 20%;
+    --muted-foreground: 155 15% 60%;
+
+    --accent: 168 76% 50%;
+    --accent-foreground: 180 8% 8%;
+
+    --border: 160 15% 22%;
+    --input: 160 15% 22%;
+    --ring: 161 70% 50%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Axiforma", system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ==================================================================
+   Components
+   ================================================================== */
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .card-premium {
+    @apply bg-card rounded-2xl p-6 md:p-8 shadow-md transition-all duration-300 hover:shadow-lg;
+  }
+
+  .btn-primary {
+    @apply rounded-full bg-primary px-8 py-4 font-medium text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:opacity-90 hover:shadow-lg;
+  }
+
+  .btn-secondary {
+      @apply rounded-full border border-border bg-secondary px-8 py-4 font-medium text-secondary-foreground transition-all duration-300;
+      &:hover {
+        background-color: hsl(var(--secondary) / 0.8);
+      }
+    }
+
+  .link-underline {
+    @apply relative inline-block after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:origin-bottom-right after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100;
+  }
+}
+
+/* ==================================================================
+   Utilities & Animations
+   ================================================================== */
+
+@layer utilities {
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.5s ease-out forwards;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+}
+
+/* ==================================================================
+   Keyframes
+   ================================================================== */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
