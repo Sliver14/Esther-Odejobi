@@ -12,6 +12,7 @@ const navLinks = [
   { name: "About", href: "/#about" },
   { name: "Services", href: "/services" },
   { name: "Testimonials", href: "/#testimonials" },
+  { name: "FAQ", href: "/#faq" },
   { name: "Free Resources", href: "/#free-resources" },
 ];
 
@@ -40,7 +41,7 @@ export function Header() {
         <nav className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
-            {/* <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center"> */}
+            {/* <div className="w-8 h-8 rounded-xl bg-primary flex items-center justify-center"> */}
               {/* <span className="text-primary-foreground font-bold text-lg">
                 E
               </span> */}

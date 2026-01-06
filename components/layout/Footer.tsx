@@ -4,19 +4,22 @@ import Link from "next/link";
 import { Instagram, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Image from "next/image";
 
 const footerLinks = {
   pages: [
     { name: "Home", href: "/" },
     { name: "About", href: "/#about" },
     { name: "Services", href: "/#services" },
-    { name: "Free Resources", href: "/#free-resources" },
     { name: "Testimonials", href: "/#testimonials" },
+    { name: "FAQ", href: "/#faq" },
+    { name: "Free Resources", href: "/#free-resources" },
+    
     // { name: "Community", href: "/community" },
     // { name: "Coaching", href: "/coaching" },
     // { name: "Speaking", href: "/speaking" },
     // { name: "Collaborations", href: "/collaborations" },
-    // { name: "FAQ", href: "/faq" },
+    
   ],
   services: [
     { name: "Wealth & Wellness Community", href: "/services" },
@@ -54,10 +57,17 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-heading font-bold text-lg">
+              <div className="w-8 h-8 rounded-xl  flex items-center justify-center">
+                {/* <span className="text-primary-foreground font-heading font-bold text-lg">
                   E
-                </span>
+                </span> */}
+                <Image 
+                  src="/estherodejobi1-046.png"
+                  alt="Esther Odejobi Logo"
+                  width={40}
+                  height={40}
+                  className="object-cover w-full h-full rounded-xl"
+                />
               </div>
               <span className="font-heading font-semibold">
                 Esther Odejobi

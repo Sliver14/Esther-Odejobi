@@ -4,24 +4,49 @@ import { Quote } from "lucide-react";
 
 const testimonials = [
   {
-    quote: "Working with Esther completely transformed how I view and manage my money. I finally feel in control of my finances!",
-    author: "Adaeze O.",
-    role: "Young Professional",
+    quote:
+      "The session was really enlightening. Thank you for all you shared. I’ll be joining the subscription-based community so I can learn more and be guided rightly.",
+    author: "Community Member",
+    role: "Live Session Attendee",
     rating: 5,
   },
   {
-    quote: "The Wealth & Wellness Community gave me the accountability and support I needed to start investing confidently.",
-    author: "Tunde M.",
-    role: "Entrepreneur",
+    quote:
+      "I was almost depressed about my financial status, but just two months after joining the paid financial community, a lot has changed. The classes, book and movie reviews, one-on-one counselling, and other sessions have been truly impactful.",
+    author: "Paid Community Member",
+    role: "Wealth & Wellness Community",
     rating: 5,
   },
   {
-    quote: "Esther's approach is practical, relatable, and judgment-free. If you're tired of poor financial habits, she's your person.",
-    author: "Funke A.",
-    role: "University Student",
+    quote:
+      "I’m already investing and I plan to add more funds to my money market and real estate investments this March.",
+    author: "Private Client",
+    role: "Investor",
+    rating: 5,
+  },
+  {
+    quote:
+      "In less than four months of joining the paid financial community, I’ve gained valuable insights into multiple investment opportunities. I now have an emergency fund, a solid budget, clear goals, and a strong financial plan. My finances have improved significantly.",
+    author: "Paid Community Member",
+    role: "Financial Growth Journey",
+    rating: 5,
+  },
+  {
+    quote:
+      "Before now, I thought I was making a lot of money and spent it anyhow. With the structure I’ve learned, I now know what to do with my money before it even comes. Even free money has an assignment now. That stands out for me.",
+    author: "Coaching Client",
+    role: "Budgeting & Structure",
+    rating: 5,
+  },
+  {
+    quote:
+      "Thank you so much for your support over the past two months. Working with you one-on-one has helped me become more financially prudent, especially with budgeting. I’ve also started investing in mutual funds and stocks. You’ve been amazing.",
+    author: "1-on-1 Coaching Client",
+    role: "Personal Finance Coaching",
     rating: 5,
   },
 ];
+
 
 export function TestimonialsSection() {
   return (
@@ -38,7 +63,7 @@ export function TestimonialsSection() {
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}

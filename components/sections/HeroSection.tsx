@@ -132,9 +132,9 @@ export function HeroSection() {
           <div className="bg-gradient-to-r from-primary via-accent to-primary rounded-2xl shadow-lg">
             <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-primary-foreground/20">
               {[
-                { number: "500+", label: "Lives Impacted" },
-                { number: "5+", label: "Years Experience" },
-                { number: "100+", label: "Sessions Delivered" },
+                { number: "700+", label: "Lives Impacted" },
+                { number: "3+", label: "Years Experience" },
+                { number: "80+", label: "Sessions Delivered" },
                 { number: "4.9★", label: "Client Rating" },
               ].map((stat, index) => (
                 <div key={index} className="p-5 md:p-8 text-center text-primary-foreground">

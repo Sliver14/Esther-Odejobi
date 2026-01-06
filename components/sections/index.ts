@@ -5,3 +5,5 @@ export { WhyWorkWithMeSection } from "./WhyWorkWithMeSection";
 export { TestimonialsSection } from "./TestimonialsSection";
 export { FreeResourcesSection } from "./FreeResourcesSection";
 export { FinalCTASection } from "./FinalCTASection";
+export { FAQSection } from "./FaqSection";
+export { EventsGallery } from "./EventsGallery";

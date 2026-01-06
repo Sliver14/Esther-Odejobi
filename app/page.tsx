@@ -6,6 +6,8 @@ import {
   TestimonialsSection,
   FreeResourcesSection,
   FinalCTASection,
+  FAQSection,
+  // EventsGallery,
 } from "@/components/sections";
 
 export default function HomePage() {
@@ -15,7 +17,9 @@ export default function HomePage() {
       <AboutSection />
       <ServicesSection />
       <WhyWorkWithMeSection />
+      {/* <EventsGallery /> */}
       <TestimonialsSection />
+      <FAQSection />
       <FreeResourcesSection />
       <FinalCTASection />
     </>

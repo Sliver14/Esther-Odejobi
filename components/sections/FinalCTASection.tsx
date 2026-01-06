@@ -40,7 +40,7 @@ export function FinalCTASection() {
               className="rounded-full px-8 border-anti-flash-white/30 text-black hover:bg-anti-flash-white hover:text-rich-black group"
               asChild
             >
-              <Link href="https://selar.com/23i6qrk378" target="_blank" rel="noopener noreferrer">
+              <Link href="https://selar.com/8166zko2v2" target="_blank" rel="noopener noreferrer">
                 <Calendar className="mr-2 w-5 h-5" />
                 Book a Session
               </Link>
@@ -65,7 +65,7 @@ export function FinalCTASection() {
           </div>
 
           {/* Trust indicators */}
-          <div className="flex flex-wrap justify-center gap-8 text-sm text-anti-flash-white/60">
+          {/* <div className="flex flex-wrap justify-center gap-8 text-sm text-anti-flash-white/60">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-primary" />
               <span>No pressure, no shame</span>
@@ -78,7 +78,7 @@ export function FinalCTASection() {
               <div className="w-2 h-2 rounded-full bg-primary" />
               <span>Results-focused</span>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

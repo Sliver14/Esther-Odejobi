@@ -22,7 +22,7 @@ import { Badge } from "@/components/ui/badge";
 // Add image URLs for each service
 const services = [
   {
-    title: "Wealth & Wellness Community",
+    title: "Wealth & Wellness Circle",
     id: "community",
     description: "A guided finance and wellness space for those ready to stop guessing and start growing intentionally.",
     icon: Users,
@@ -72,7 +72,7 @@ const services = [
   {
     title: "Workshops & Speaking",
     id: "speaking",
-    description: "Interactive and actionable finance sessions for organizations, schools, and fellowships.",
+    description: "Interactive and actionable finance sessions for organizations, schools, churches, communities, podcasts and talk shows.",
     icon: Mic2,
     features: [
       "Money mindset & habits",
