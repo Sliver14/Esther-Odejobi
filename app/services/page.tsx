@@ -35,7 +35,7 @@ const services = [
     cta: "Join the Community",
     href: "https://bit.ly/WealthandWellnessCircle",
     tag: "2026 Cohort",
-    image: "/community2.jpg",
+    image: "/community2.webp",
   },
   {
     title: "60-Minute Clarity Session",
@@ -51,7 +51,7 @@ const services = [
     cta: "Book Your Session",
     href: "https://selar.com/8166zko2v2",
     tag: "Quick Reset",
-    image: "/oneonone.jpg",
+    image: "/oneonone.webp",
   },
   {
     title: "1-Month 1-on-1 Coaching",
@@ -67,7 +67,7 @@ const services = [
     cta: "Let's Work Together",
     href: "https://selar.com/23i6qrk378",
     tag: "Deep Transformation",
-    image: "/oneonone2.jpg",
+    image: "/oneonone2.webp",
   },
   {
     title: "Workshops & Speaking",
@@ -83,7 +83,7 @@ const services = [
     cta: "Invite Me to Speak",
     href: "https://wa.me/2347068778156?text=Hello%20Esther%2C%20I%20would%20love%20to%20invite%20you%20to%20speak%20at%20our%20event!",
     tag: "For Groups",
-    image: "/new-year.jpg",
+    image: "/new-year.webp",
   },
   {
     title: "Content & Collaborations",
@@ -99,7 +99,7 @@ const services = [
     cta: "Let's Collaborate",
     href: "https://wa.me/2347068778156?text=Hi%20Esther%2C%20I%20am%20interested%20in%20collaborating%20on%20content%20with%20you.%20Let%27s%20chat!",
     tag: "For Brands",
-    image: "/community 1.jpg",
+    image: "/community 1.webp",
   }
 ];
 

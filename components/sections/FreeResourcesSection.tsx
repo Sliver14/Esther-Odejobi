@@ -61,7 +61,7 @@ export function FreeResourcesSection() {
                 const fileName =
                   resource.title === "Budget Template"
                     ? "/files/TEA'S BUDGETING TEMPLATE.xlsx"
-                    : "/files/affirmation6.jpg"; // adjust paths as needed
+                    : "/files/affirmation6.webp"; // adjust paths as needed
 
                 return (
                   <div
