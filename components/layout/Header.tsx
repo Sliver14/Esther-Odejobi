@@ -37,7 +37,7 @@ export function Header() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-[rgb(var(--background)/0.95)] backdrop-blur-md shadow-sm py-3"
+          ? "bg-background/95 backdrop-blur-md shadow-sm py-3"
           : "bg-transparent py-5"
       )}
     >
@@ -68,7 +68,7 @@ export function Header() {
                     "text-sm font-medium transition-colors hover:text-primary",
                     isActive
                       ? "text-primary"
-                      : "text-[rgb(var(--foreground)/0.8)]"
+                      : "text-foreground/80"
                   )}
                 >
                   {link.name}

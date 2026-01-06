@@ -1,77 +1,122 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 
-@import "tailwindcss";
-@config "../../tailwind.config.ts";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* ==================================================================
-   Register ALL colors — this is the key for v4 + shadcn/ui
-   ================================================================== */
+/* Custom utilities for @apply (must be before @layer base) */
+@layer utilities {
+  .border-border {
+    border-color: hsl(var(--border));
+  }
 
-@theme {
-  /* Core shadcn/ui tokens */
-  --color-primary: rgb(var(--primary) / <alpha-value>);
-  --color-primary-foreground: rgb(var(--primary-foreground) / <alpha-value>);
-  --color-secondary: rgb(var(--secondary) / <alpha-value>);
-  --color-secondary-foreground: rgb(var(--secondary-foreground) / <alpha-value>);
-  --color-accent: rgb(var(--accent) / <alpha-value>);
-  --color-accent-foreground: rgb(var(--accent-foreground) / <alpha-value>);
-  --color-muted: rgb(var(--muted) / <alpha-value>);
-  --color-muted-foreground: rgb(var(--muted-foreground) / <alpha-value>);
-  --color-destructive: rgb(var(--destructive) / <alpha-value>);
-  --color-destructive-foreground: rgb(var(--destructive-foreground) / <alpha-value>);
-  --color-card: rgb(var(--card) / <alpha-value>);
-  --color-card-foreground: rgb(var(--card-foreground) / <alpha-value>);
-  --color-popover: rgb(var(--popover) / <alpha-value>);
-  --color-popover-foreground: rgb(var(--popover-foreground) / <alpha-value>);
-  --color-background: rgb(var(--background) / <alpha-value>);
-  --color-foreground: rgb(var(--foreground) / <alpha-value>);
-  --color-border: rgb(var(--border) / <alpha-value>);
+  .bg-background {
+    background-color: hsl(var(--background));
+  }
 
-  /* Your brand colors */
-  --color-rich-black: rgb(var(--rich-black) / <alpha-value>);
-  --color-dark-green: rgb(var(--dark-green) / <alpha-value>);
-  --color-bangladesh-green: rgb(var(--bangladesh-green) / <alpha-value>);
-  --color-mountain-meadow: rgb(var(--mountain-meadow) / <alpha-value>);
-  --color-caribbean-green: rgb(var(--caribbean-green) / <alpha-value>);
-  --color-anti-flash-white: rgb(var(--anti-flash-white) / <alpha-value>);
-  --color-pine: rgb(var(--pine) / <alpha-value>);
-  --color-basil: rgb(var(--basil) / <alpha-value>);
-  --color-forest: rgb(var(--forest) / <alpha-value>);
-  --color-frog: rgb(var(--frog) / <alpha-value>);
-  --color-mint: rgb(var(--mint) / <alpha-value>);
+  .bg-card {
+    background-color: hsl(var(--card));
+  }
 
-  --color-sidebar-background: rgb(var(--sidebar-background) / <alpha-value>);
-  --color-sidebar-foreground: rgb(var(--sidebar-foreground) / <alpha-value>);
-  --color-sidebar-primary: rgb(var(--sidebar-primary) / <alpha-value>);
-  --color-sidebar-primary-foreground: rgb(var(--sidebar-primary-foreground) / <alpha-value>);
-  --color-sidebar-accent: rgb(var(--sidebar-accent) / <alpha-value>);
-  --color-sidebar-accent-foreground: rgb(var(--sidebar-accent-foreground) / <alpha-value>);
-  --color-sidebar-border: rgb(var(--sidebar-border) / <alpha-value>);
-  --color-sidebar-ring: rgb(var(--sidebar-ring) / <alpha-value>);
+  .text-foreground {
+    color: hsl(var(--foreground));
+  }
+
+  .text-primary-foreground {
+    color: hsl(var(--primary-foreground));
+  }
+
+  .bg-primary {
+    background-color: hsl(var(--primary));
+  }
+
+  .bg-secondary {
+    background-color: hsl(var(--secondary));
+  }
+
+  .text-secondary-foreground {
+    color: hsl(var(--secondary-foreground));
+  }
 }
 
-/* Keep only non-color utilities if needed (border-border is common) */
-@utility border-border {
-  border-color: rgb(var(--border));
-}
-
-/* ==================================================================
-   Design Tokens — RGB channels
-   ================================================================== */
-
+/* Design Tokens — HSL space-separated */
 @layer base {
   :root {
-    /* Your full RGB variables (light mode) - keep exactly as you have */
-    --background: 250 251 249;
-    --foreground: 19 22 22;
-    /* ... all your variables ... */
+    /* Core */
+    --background: 100 20% 98%;
+    --foreground: 180 8% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 180 8% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 180 8% 8%;
+    --primary: 161 70% 40%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 150 25% 95%;
+    --secondary-foreground: 160 50% 25%;
+    --muted: 150 15% 93%;
+    --muted-foreground: 160 10% 45%;
+    --accent: 168 76% 42%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 150 20% 88%;
+    --input: 150 20% 88%;
+    --ring: 161 70% 40%;
+    --radius: 0.75rem;
+
+    /* Extended Palette */
+    --rich-black: 180 8% 8%;
+    --dark-green: 160 80% 15%;
+    --bangladesh-green: 160 100% 20%;
+    --mountain-meadow: 161 70% 40%;
+    --caribbean-green: 168 76% 42%;
+    --anti-flash-white: 100 20% 98%;
+    --pine: 155 60% 25%;
+    --basil: 145 45% 35%;
+    --forest: 150 50% 20%;
+    --frog: 140 55% 45%;
+    --mint: 155 60% 85%;
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 161 70% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 150 25% 95%;
+    --sidebar-accent-foreground: 160 50% 25%;
+    --sidebar-border: 150 20% 88%;
+    --sidebar-ring: 161 70% 40%;
   }
 
   .dark {
-    /* Your full RGB variables (dark mode) */
-    --background: 19 22 22;
-    --foreground: 250 251 249;
-    /* ... all your dark overrides ... */
+    --background: 180 8% 8%;
+    --foreground: 100 20% 98%;
+    --card: 160 15% 12%;
+    --card-foreground: 100 20% 98%;
+    --popover: 160 15% 12%;
+    --popover-foreground: 100 20% 98%;
+    --primary: 161 70% 50%;
+    --primary-foreground: 180 8% 8%;
+    --secondary: 160 20% 18%;
+    --secondary-foreground: 155 60% 85%;
+    --muted: 160 15% 20%;
+    --muted-foreground: 155 15% 60%;
+    --accent: 168 76% 50%;
+    --accent-foreground: 180 8% 8%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 160 15% 22%;
+    --input: 160 15% 22%;
+    --ring: 161 70% 50%;
+
+    --sidebar-background: 160 15% 10%;
+    --sidebar-foreground: 100 20% 95%;
+    --sidebar-primary: 161 70% 50%;
+    --sidebar-primary-foreground: 180 8% 8%;
+    --sidebar-accent: 160 20% 18%;
+    --sidebar-accent-foreground: 155 60% 85%;
+    --sidebar-border: 160 15% 22%;
+    --sidebar-ring: 161 70% 50%;
   }
 
   * {
@@ -83,10 +128,8 @@
   }
 
   body {
-    background-color: rgb(var(--background));
-    color: rgb(var(--foreground));
+    @apply bg-background text-foreground antialiased;
     font-family: "Outfit", system-ui, sans-serif;
-    -webkit-font-smoothing: antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -94,10 +137,7 @@
   }
 }
 
-/* ==================================================================
-   Components — Fixed hover opacity
-   ================================================================== */
-
+/* Components */
 @layer components {
   .container-custom {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
@@ -121,10 +161,7 @@
   }
 
   .btn-secondary {
-    @apply rounded-full border border-border bg-secondary px-8 py-4 font-medium text-secondary-foreground transition-all duration-300;
-    &:hover {
-      background-color: rgb(var(--secondary) / 0.8);
-    }
+    @apply rounded-full border border-border bg-secondary px-8 py-4 font-medium text-secondary-foreground transition-all duration-300 hover:bg-secondary/80;
   }
 
   .link-underline {
@@ -132,10 +169,7 @@
   }
 }
 
-/* ==================================================================
-   Animations
-   ================================================================== */
-
+/* Animations */
 @layer utilities {
   .animate-fade-up { animation: fadeUp 0.6s ease-out forwards; }
   .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
