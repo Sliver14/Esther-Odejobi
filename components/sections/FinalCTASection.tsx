@@ -29,7 +29,7 @@ export function FinalCTASection() {
             <Button size="lg" className="rounded-full px-8 group" asChild>
               <Link href="https://bit.ly/WealthandWellnessCircle" target="_blank" rel="noopener noreferrer">
                 <Users className="mr-2 w-5 h-5" />
-                Join the Community
+                Join inner Circle
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
