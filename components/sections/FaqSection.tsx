@@ -45,7 +45,7 @@ export function FAQSection() {
             Frequently Asked Questions
           </h2>
           <p className="text-muted-foreground text-lg">
-            Everything you need to know about the Wealth & Wellness programs[cite: 180].
+            Everything you need to know about the Wealth & Wellness programs.
           </p>
         </div>
 
