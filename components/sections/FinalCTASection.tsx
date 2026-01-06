@@ -27,7 +27,7 @@ export function FinalCTASection() {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <Button size="lg" className="rounded-full px-8 group" asChild>
-              <Link href="https://bit.ly/WealthandWellnessCircle" target="_blank">
+              <Link href="https://bit.ly/WealthandWellnessCircle" target="_blank" rel="noopener noreferrer">
                 <Users className="mr-2 w-5 h-5" />
                 Join the Community
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -40,7 +40,7 @@ export function FinalCTASection() {
               className="rounded-full px-8 border-anti-flash-white/30 text-black hover:bg-anti-flash-white hover:text-rich-black group"
               asChild
             >
-              <Link href="https://selar.com/23i6qrk378" target="_blank">
+              <Link href="https://selar.com/23i6qrk378" target="_blank" rel="noopener noreferrer">
                 <Calendar className="mr-2 w-5 h-5" />
                 Book a Session
               </Link>
