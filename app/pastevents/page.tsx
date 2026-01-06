@@ -71,7 +71,7 @@ export default function EventsArchivePage() {
       <section className="py-20 container-custom">
         <div className="mb-12">
           <h2 className="text-3xl font-heading font-bold mb-4">Event Recaps</h2>
-          <p className="text-muted-foreground">Catch a glimpse of our interactive community learning sessions[cite: 145, 148].</p>
+          <p className="text-muted-foreground">Catch a glimpse of our interactive community learning sessions.</p>
         </div>
         
         <div className="group relative aspect-video rounded-[2rem] overflow-hidden bg-rich-black border border-border/50 shadow-2xl">
@@ -113,19 +113,19 @@ export default function EventsArchivePage() {
                   <h3 className="text-3xl font-heading font-bold text-rich-black">{event.title}</h3>
                   <div className="flex items-center gap-2 text-muted-foreground font-medium">
                     <MapPin size={18} className="text-mountain-meadow" />
-                    {event.location} [cite: 151, 154]
+                    {event.location}
                   </div>
                   <p className="text-muted-foreground text-lg leading-relaxed">
-                    {event.description} [cite: 147, 158]
+                    {event.description}
                   </p>
                   <ul className="grid grid-cols-1 gap-3">
                     <li className="flex items-center gap-3 text-rich-black font-medium">
                       <CheckCircle2 size={20} className="text-mountain-meadow" />
-                      Interactive learning sessions [cite: 112]
+                      Interactive learning sessions
                     </li>
                     <li className="flex items-center gap-3 text-rich-black font-medium">
                       <CheckCircle2 size={20} className="text-mountain-meadow" />
-                      Actionable takeaways [cite: 113]
+                      Actionable takeaways
                     </li>
                   </ul>
                 </div>
