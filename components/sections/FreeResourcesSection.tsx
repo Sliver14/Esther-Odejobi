@@ -11,6 +11,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { toast } from "sonner";
+import KitForm from "../KitForm";
 
 const freeResources = [
   {
@@ -118,7 +119,7 @@ export function FreeResourcesSection() {
               insights, and community updates delivered straight to your inbox.
             </p>
 
-            <form onSubmit={handleSubscribe} className="space-y-4">
+            {/* <form onSubmit={handleSubscribe} className="space-y-4">
               <Input
                 type="email"
                 placeholder="Enter your email"
@@ -135,7 +136,11 @@ export function FreeResourcesSection() {
                 Subscribe Now
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
-            </form>
+            </form> */}
+            <div className="py-2">
+              <KitForm />
+            </div>
+            
 
             <p className="text-xs text-primary-foreground/70 mt-4">
               No spam, ever. Unsubscribe anytime.
