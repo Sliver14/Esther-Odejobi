@@ -76,7 +76,7 @@ export function HeroSection() {
                   className="rounded-full px-8 text-sm sm:text-base group"
                   asChild
                 >
-                  <a href="https://chat.whatsapp.com/CDyvXzgIDVRGJWX8tD8PPE" target="_blank" rel="noopener noreferrer">
+                  <a href="https://bit.ly/WealthandWellnessCircle" target="_blank" rel="noopener noreferrer">
                     Join the Community
                     <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </a>
