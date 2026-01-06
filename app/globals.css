@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 
 @import "tailwindcss";
-@config "./tailwind.config.ts";
+@config "@/tailwind.config.ts";
 
 /* ==================================================================
    Register ALL colors — this is the key for v4 + shadcn/ui
