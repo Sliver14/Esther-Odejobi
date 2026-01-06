@@ -42,7 +42,7 @@ export function FreeResourcesSection() {
   };
 
   return (
-    <section id="resources" className="section-padding bg-card">
+    <section id="free-resources" className="section-padding bg-card">
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
           {/* Free Resources */}

@@ -2,35 +2,59 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/#about" },
-  { name: "Services", href: "/#services" },
-  { name: "Testimonials", href: "/#testimonials" },
-  { name: "Free Resources", href: "/#free-resources" },
+  { name: "Home", id: "home", href: "#home" },
+  { name: "About", id: "about", href: "#about" },
+  { name: "Services", id: "services", href: "#services" },
+  { name: "Testimonials", id: "testimonials", href: "#testimonials" },
+  { name: "Free Resources", id: "free-resources", href: "#free-resources" },
 ];
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const pathname = usePathname();
+  const [activeSection, setActiveSection] = useState("home");
 
-  // Scroll effect for frosted header
+  // Header scroll effect
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
+  // Observe sections
   useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
+    const sections = navLinks
+      .map((link) => document.getElementById(link.id))
+      .filter(Boolean);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Sort by vertical position so the section nearest top is picked
+        const visibleSections = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+
+        if (visibleSections.length > 0) {
+          setActiveSection(visibleSections[0].target.id);
+        }
+      },
+      {
+        root: null,
+        rootMargin: "-50% 0px -50% 0px", // trigger when section crosses middle of viewport
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section!));
+
+    return () => observer.disconnect();
+  }, []);
+
 
   return (
     <header
@@ -44,7 +68,7 @@ export function Header() {
       <div className="container-custom">
         <nav className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="#home" className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-lg">
                 E
@@ -55,26 +79,22 @@ export function Header() {
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => {
-              const isActive = pathname === "/" && link.href.startsWith("/#");
-
-              return (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className={cn(
-                    "text-sm font-medium transition-colors hover:text-primary",
-                    isActive
-                      ? "text-primary"
-                      : "text-foreground/80"
-                  )}
-                >
-                  {link.name}
-                </Link>
-              );
-            })}
+            {navLinks.map((link) => (
+              <Link
+                key={link.id}
+                href={link.href}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-primary",
+                  activeSection === link.id
+                    ? "text-primary"
+                    : "text-foreground/80"
+                )}
+              >
+                {link.name}
+              </Link>
+            ))}
           </div>
 
           {/* Desktop CTA */}
@@ -100,7 +120,7 @@ export function Header() {
             </Button>
           </div>
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Toggle */}
           <button
             className="lg:hidden p-2 -mr-2"
             onClick={() => setIsOpen((prev) => !prev)}
@@ -120,35 +140,19 @@ export function Header() {
           <div className="bg-card rounded-2xl p-6 shadow-lg space-y-4">
             {navLinks.map((link) => (
               <Link
-                key={link.name}
+                key={link.id}
                 href={link.href}
-                className="block py-3 text-base font-medium text-[rgb(var(--foreground)/0.8)] hover:text-primary transition-colors"
+                onClick={() => setIsOpen(false)}
+                className={cn(
+                  "block py-3 text-base font-medium transition-colors",
+                  activeSection === link.id
+                    ? "text-primary"
+                    : "text-foreground/80"
+                )}
               >
                 {link.name}
               </Link>
             ))}
-
-            <div className="pt-6 border-t border-border space-y-4">
-              <Button variant="outline" className="w-full rounded-full" asChild>
-                <a
-                  href="https://www.instagram.com/theesther.oj/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Follow on Instagram
-                </a>
-              </Button>
-
-              <Button className="w-full rounded-full" asChild>
-                <a
-                  href="https://chat.whatsapp.com/CDyvXzgIDVRGJWX8tD8PPE"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Join Free Community
-                </a>
-              </Button>
-            </div>
           </div>
         </div>
       </div>

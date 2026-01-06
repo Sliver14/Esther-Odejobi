@@ -27,7 +27,7 @@ export function FinalCTASection() {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <Button size="lg" className="rounded-full px-8 group" asChild>
-              <Link href="/community">
+              <Link href="https://bit.ly/WealthandWellnessCircle" target="_blank">
                 <Users className="mr-2 w-5 h-5" />
                 Join the Community
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -40,7 +40,7 @@ export function FinalCTASection() {
               className="rounded-full px-8 border-anti-flash-white/30 text-black hover:bg-anti-flash-white hover:text-rich-black group"
               asChild
             >
-              <Link href="/coaching">
+              <Link href="https://selar.com/23i6qrk378" target="_blank">
                 <Calendar className="mr-2 w-5 h-5" />
                 Book a Session
               </Link>
@@ -52,10 +52,15 @@ export function FinalCTASection() {
               className="rounded-full px-8 border-anti-flash-white/30 text-black hover:bg-anti-flash-white hover:text-rich-black group"
               asChild
             >
-              <Link href="/speaking">
-                <Mic className="mr-2 w-5 h-5" />
-                Invite Me to Speak
-              </Link>
+          <Link
+            href="https://wa.me/2347068778156?text=Hello%20Esther%2C%20I%20would%20love%20to%20invite%20you%20to%20speak%20at%20our%20event!"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center"
+          >
+            <Mic className="mr-2 w-5 h-5" />
+            Invite Me to Speak
+          </Link>
             </Button>
           </div>
 
