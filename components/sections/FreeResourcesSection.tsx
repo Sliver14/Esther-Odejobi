@@ -56,34 +56,45 @@ export function FreeResourcesSection() {
             </h2>
 
             <div className="space-y-6">
-              {freeResources.map((resource) => (
-                <div
-                  key={resource.title}
-                  className="flex gap-6 p-6 bg-background rounded-2xl border border-border hover:border-primary/30 transition-colors"
-                >
-                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <resource.icon className="w-7 h-7 text-primary" />
-                  </div>
+              {freeResources.map((resource) => {
+                // Map your resources to filenames in the public folder
+                const fileName =
+                  resource.title === "Budget Template"
+                    ? "/files/TEA'S BUDGETING TEMPLATE.xlsx"
+                    : "/files/affirmation6.jpg"; // adjust paths as needed
 
-                  <div className="flex-1">
-                    <h3 className="font-heading font-semibold mb-2">
-                      {resource.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm mb-4">
-                      {resource.description}
-                    </p>
+                return (
+                  <div
+                    key={resource.title}
+                    className="flex gap-6 p-6 bg-background rounded-2xl border border-border hover:border-primary/30 transition-colors"
+                  >
+                    <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <resource.icon className="w-7 h-7 text-primary" />
+                    </div>
 
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="rounded-full group"
-                    >
-                      <Download className="mr-2 w-4 h-4" />
-                      {resource.cta}
-                    </Button>
+                    <div className="flex-1">
+                      <h3 className="font-heading font-semibold mb-2">
+                        {resource.title}
+                      </h3>
+                      <p className="text-muted-foreground text-sm mb-4">
+                        {resource.description}
+                      </p>
+
+                      <Button
+                        asChild
+                        variant="outline"
+                        size="sm"
+                        className="rounded-full group"
+                      >
+                        <a href={fileName} download>
+                          <Download className="mr-2 w-4 h-4" />
+                          {resource.cta}
+                        </a>
+                      </Button>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 

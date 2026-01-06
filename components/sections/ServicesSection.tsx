@@ -73,7 +73,7 @@ export function ServicesSection() {
         {/* CTA */}
         <div className="text-center mt-12">
           <Button asChild size="lg" className="rounded-full px-8 group">
-            <Link href="/community">
+            <Link href="/">
               Explore Services
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>

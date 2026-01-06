@@ -8,11 +8,15 @@ import { Input } from "@/components/ui/input";
 const footerLinks = {
   pages: [
     { name: "Home", href: "/" },
-    { name: "Community", href: "/community" },
-    { name: "Coaching", href: "/coaching" },
-    { name: "Speaking", href: "/speaking" },
-    { name: "Collaborations", href: "/collaborations" },
-    { name: "FAQ", href: "/faq" },
+    { name: "About", href: "/#about" },
+    { name: "Services", href: "/#services" },
+    { name: "Free Resources", href: "/#free-resources" },
+    { name: "Testimonials", href: "/#testimonials" },
+    // { name: "Community", href: "/community" },
+    // { name: "Coaching", href: "/coaching" },
+    // { name: "Speaking", href: "/speaking" },
+    // { name: "Collaborations", href: "/collaborations" },
+    // { name: "FAQ", href: "/faq" },
   ],
   services: [
     { name: "Wealth & Wellness Community", href: "/community" },
@@ -83,7 +87,7 @@ export function Footer() {
 
           {/* Pages */}
           <div>
-            <h4 className="font-heading font-semibold mb-4">Pages</h4>
+            <h4 className="font-heading font-semibold mb-4">Sections</h4>
             <ul className="space-y-3">
               {footerLinks.pages.map((link) => (
                 <li key={link.name}>

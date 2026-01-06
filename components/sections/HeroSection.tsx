@@ -77,7 +77,7 @@ export function HeroSection() {
                   asChild
                 >
                   <a href="https://bit.ly/WealthandWellnessCircle" target="_blank" rel="noopener noreferrer">
-                    Join the Community
+                    Join inner Circle
                     <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </a>
                 </Button>
