@@ -6,7 +6,7 @@ import { ArrowRight, Instagram } from "lucide-react";
 export function HeroSection() {
   return (
     <>
-      <section id="home" className="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-br from-mint/30 via-background to-secondary/50">
+      <section id="home" className="relative min-h-[85vh] flex items-center overflow-hidden pt-16 md:pt-0 bg-gradient-to-br from-mint/30 via-background to-secondary/50">
         
         {/* Decorative shapes */}
         <div className="absolute top-20 right-10 w-16 h-16 text-primary opacity-20">
