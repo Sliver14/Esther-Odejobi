@@ -7,17 +7,17 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { name: "Home", id: "home", href: "#home" },
-  { name: "About", id: "about", href: "#about" },
-  { name: "Services", id: "services", href: "#services" },
-  { name: "Testimonials", id: "testimonials", href: "#testimonials" },
-  { name: "Free Resources", id: "free-resources", href: "#free-resources" },
+  { name: "Home", href: "/#home" },
+  { name: "About", href: "/#about" },
+  { name: "Services", href: "/services" },
+  { name: "Testimonials", href: "/#testimonials" },
+  { name: "Free Resources", href: "/#free-resources" },
 ];
+
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
 
   // Header scroll effect
   useEffect(() => {
@@ -26,49 +26,19 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Observe sections
-  useEffect(() => {
-    const sections = navLinks
-      .map((link) => document.getElementById(link.id))
-      .filter(Boolean);
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // Sort by vertical position so the section nearest top is picked
-        const visibleSections = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-
-        if (visibleSections.length > 0) {
-          setActiveSection(visibleSections[0].target.id);
-        }
-      },
-      {
-        root: null,
-        rootMargin: "-50% 0px -50% 0px", // trigger when section crosses middle of viewport
-        threshold: 0,
-      }
-    );
-
-    sections.forEach((section) => observer.observe(section!));
-
-    return () => observer.disconnect();
-  }, []);
-
-
   return (
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
           ? "bg-background/95 backdrop-blur-md shadow-sm py-3"
-          : "bg-transparent py-5"
+          : "bg-white py-5"
       )}
     >
       <div className="container-custom">
         <nav className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="#home" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-lg">
                 E
@@ -83,14 +53,9 @@ export function Header() {
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
-                key={link.id}
+                key={link.name}
                 href={link.href}
-                className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary",
-                  activeSection === link.id
-                    ? "text-primary"
-                    : "text-foreground/80"
-                )}
+                className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
               >
                 {link.name}
               </Link>
@@ -140,15 +105,10 @@ export function Header() {
           <div className="bg-card rounded-2xl p-6 shadow-lg space-y-4">
             {navLinks.map((link) => (
               <Link
-                key={link.id}
+                key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className={cn(
-                  "block py-3 text-base font-medium transition-colors",
-                  activeSection === link.id
-                    ? "text-primary"
-                    : "text-foreground/80"
-                )}
+                className="block py-3 text-base font-medium text-foreground/80 transition-colors hover:text-primary"
               >
                 {link.name}
               </Link>

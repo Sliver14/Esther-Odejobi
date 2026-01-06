@@ -19,11 +19,11 @@ const footerLinks = {
     // { name: "FAQ", href: "/faq" },
   ],
   services: [
-    { name: "Wealth & Wellness Community", href: "/community" },
-    { name: "Clarity Session", href: "/coaching" },
-    { name: "1-Month Coaching", href: "/coaching" },
-    { name: "Workshops", href: "/speaking" },
-    { name: "Content Creation", href: "/collaborations" },
+    { name: "Wealth & Wellness Community", href: "/services" },
+    { name: "Clarity Session", href: "/services" },
+    { name: "1-Month Coaching", href: "/services" },
+    { name: "Workshops", href: "/services" },
+    { name: "Content Creation", href: "/services" },
   ],
 };
 
