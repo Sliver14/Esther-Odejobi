@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const navLinks = [
   { name: "Home", href: "/#home" },
@@ -43,9 +44,11 @@ export function Header() {
               {/* <span className="text-primary-foreground font-bold text-lg">
                 E
               </span> */}
-              <img
+              <Image
                 src="/android-chrome-512x512.png"
                 alt="Esther Odejobi Logo"
+                width={32}
+                height={32}
                 className="w-8 h-8 object-contain"
               />
             {/* </div> */}
