@@ -10,23 +10,20 @@ export function AboutSection() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image side */}
           <div className="relative order-2 lg:order-1">
-            <div className="aspect-[4/3] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/30 to-accent/20">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center space-y-4 p-8">
-                  <div className="w-36 h-36 mx-auto rounded-full bg-primary/30 flex items-center justify-center border-4 border-primary/40">
-                    {/* <span className="text-6xl">👩🏾‍💼</span> */}
-                    <img
+            <div className="rounded-3xl p-8 bg-gradient-to-br from-primary/20 to-accent/10 flex items-center justify-center">
+              <div className="text-center space-y-4 py-12 md:py-16">
+                <div className="w-36 h-36 mx-auto rounded-full overflow-hidden border-4 border-primary/40">
+                  <img
                     src="/esther-about.webp"
                     alt="Esther Odejobi"
-                    className="object-cover w-full h-full mx-auto rounded-full border-4 border-primary/40"
+                    className="object-cover w-full h-full"
                   />
-                  </div>
-                  
-                  <p className="text-anti-flash-white/60 text-sm">Esther Odejobi</p>
                 </div>
+                <p className="text-anti-flash-white/60 text-sm">Esther Odejobi</p>
               </div>
             </div>
           </div>
+
           
           {/* Content side */}
           <div className="order-1 lg:order-2 space-y-6">
