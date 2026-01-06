@@ -16,7 +16,7 @@ export function AboutSection() {
                   <img
                     src="/esther-about.webp"
                     alt="Esther Odejobi"
-                    className="object-cover w-full h-full"
+                    className="object-cover object-[center_15%] w-full h-full"
                   />
                 </div>
                 <p className="text-anti-flash-white/60 text-sm">Esther Odejobi</p>
