@@ -26,9 +26,9 @@ export function Providers({ children }: ProvidersProps) {
         {children}
 
         {/* Devtools only in development */}
-        {/* {process.env.NODE_ENV === "development" && (
+        {process.env.NODE_ENV === "development" && (
           <ReactQueryDevtools initialIsOpen={false} />
-        )} */}
+        )}
       </TooltipProvider>
     </QueryClientProvider>
   );
