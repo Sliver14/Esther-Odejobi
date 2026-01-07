@@ -83,7 +83,7 @@ const services = [
     cta: "Invite Me to Speak",
     href: "https://wa.me/2347068778156?text=Hello%20Esther%2C%20I%20would%20love%20to%20invite%20you%20to%20speak%20at%20our%20event!",
     tag: "For Groups",
-    image: "/new-year.webp",
+    image: "/IMG_4913.jpg",
   },
   {
     title: "Content & Collaborations",
@@ -99,7 +99,7 @@ const services = [
     cta: "Let's Collaborate",
     href: "https://wa.me/2347068778156?text=Hi%20Esther%2C%20I%20am%20interested%20in%20collaborating%20on%20content%20with%20you.%20Let%27s%20chat!",
     tag: "For Brands",
-    image: "/community 1.webp",
+    image: "/IMG_5080.png",
   }
 ];
 
