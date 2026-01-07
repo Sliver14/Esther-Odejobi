@@ -7,7 +7,7 @@ import {
   FreeResourcesSection,
   FinalCTASection,
   FAQSection,
-  // EventsGallery,
+  EventsGallery,
 } from "@/components/sections";
 
 export default function HomePage() {
@@ -17,7 +17,7 @@ export default function HomePage() {
       <AboutSection />
       <ServicesSection />
       <WhyWorkWithMeSection />
-      {/* <EventsGallery /> */}
+      <EventsGallery />
       <TestimonialsSection />
       <FAQSection />
       <FreeResourcesSection />

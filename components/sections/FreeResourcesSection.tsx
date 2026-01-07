@@ -119,7 +119,7 @@ export function FreeResourcesSection() {
               insights, and community updates delivered straight to your inbox.
             </p>
 
-            <form onSubmit={handleSubscribe} className="space-y-4">
+            {/* <form onSubmit={handleSubscribe} className="space-y-4">
               <Input
                 type="email"
                 placeholder="Enter your email"
@@ -136,10 +136,10 @@ export function FreeResourcesSection() {
                 Subscribe Now
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
-            </form>
-            {/* <div className="py-2">
+            </form> */}
+            <div className="py-2">
               <KitForm />
-            </div> */}
+            </div>
             
 
             <p className="text-xs text-primary-foreground/70 mt-4">

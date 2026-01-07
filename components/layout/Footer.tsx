@@ -5,6 +5,7 @@ import { Instagram, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
+import KitForm from "../KitForm";
 
 const footerLinks = {
   pages: [
@@ -44,9 +45,9 @@ function TikTokIcon({ className }: { className?: string }) {
 }
 
 const socialLinks = [
-  { name: "Instagram", icon: Instagram, href: "https://instagram.com" },
-  { name: "YouTube", icon: Youtube, href: "https://youtube.com" },
-  { name: "TikTok", icon: TikTokIcon, href: "https://tiktok.com" },
+  { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/theesther.oj?igsh=ZTNyMHJxMTFmYzM4&utm_source=qr" },
+  { name: "YouTube", icon: Youtube, href: "https://youtube.com/@theesther_oj?si=_Go-DxlkRDEXMWSS" },
+  { name: "TikTok", icon: TikTokIcon, href: "https://www.tiktok.com/@theestherakintayo?_r=1&_t=ZS-92s7lx4Npis" },
 ];
 
 export function Footer() {
@@ -132,10 +133,10 @@ export function Footer() {
           {/* Newsletter */}
           <div>
             <h4 className="font-heading font-semibold mb-4">Newsletter</h4>
-            <p className="text-anti-flash-white/60 text-sm mb-4">
+            <p className="text-anti-flash-white/60 text-sm">
               Get weekly tips on building wealth and wellness.
             </p>
-            <form className="space-y-3">
+            {/* <form className="space-y-3">
               <Input
                 type="email"
                 placeholder="Your email"
@@ -144,7 +145,8 @@ export function Footer() {
               <Button type="submit" size="sm" className="w-full rounded-full">
                 Subscribe
               </Button>
-            </form>
+            </form> */}
+            <KitForm />
           </div>
         </div>
 

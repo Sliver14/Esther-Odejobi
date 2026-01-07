@@ -5,47 +5,48 @@ import { Quote } from "lucide-react";
 const testimonials = [
   {
     quote:
-      "The session was really enlightening. Thank you for all you shared. I’ll be joining the subscription-based community so I can learn more and be guided rightly.",
-    author: "Community Member",
-    role: "Live Session Attendee",
+      "Hello Esther, Good morning, The session last night was a really enlightening one. Thank you for all you shared, I think I would be joining the subscription based group so I can learn more and be guided rightly",
+    author: "Remi",
+    role: "Entrepreneur",
     rating: 5,
   },
   {
     quote:
-      "I was almost depressed about my financial status, but just two months after joining the paid financial community, a lot has changed. The classes, book and movie reviews, one-on-one counselling, and other sessions have been truly impactful.",
+      "I was almost depressed about my financial status but just after 2 months plus of registering for the Paid Financial community alot has changed. Through the online classes, book reviews, movie reviews, 1 on 1 counselling and other amazing sessions.",
     author: "Paid Community Member",
-    role: "Wealth & Wellness Community",
+    role: "Paid Financial Community",
     rating: 5,
   },
   {
     quote:
-      "I’m already investing and I plan to add more funds to my money market and real estate investments this March.",
+      "Hi Esther I’m already investing and plan to add more funds to my money market and real estate investments in March.",
     author: "Private Client",
     role: "Investor",
     rating: 5,
   },
   {
     quote:
-      "In less than four months of joining the paid financial community, I’ve gained valuable insights into multiple investment opportunities. I now have an emergency fund, a solid budget, clear goals, and a strong financial plan. My finances have improved significantly.",
+      "In less than four months of being a member of your paid Financial Community, I have gained valuable insights into countless investment opportunities. Before joining, I had no knowledge of emergency funds. Now, I have one, along with a well-structured budget, clear financial goals, and a solid plan. My finances have improved significantly.",
     author: "Paid Community Member",
-    role: "Financial Growth Journey",
+    role: "Paid Financial Community",
     rating: 5,
   },
   {
     quote:
-      "Before now, I thought I was making a lot of money and spent it anyhow. With the structure I’ve learned, I now know what to do with my money before it even comes. Even free money has an assignment now. That stands out for me.",
-    author: "Coaching Client",
-    role: "Budgeting & Structure",
+      "On a normal day, I would have thought I was making a lot of money and spent them on other things. But with the structure now. I know where my money is going and what to do with before it even comes I think that is what stands out Knowing what to do with money before it comes. So even when I receive free money, I know what to use it for. Thank youuuuu",
+    author: "Erioluwa",
+    role: "Entrepreneur and MBA student",
     rating: 5,
   },
   {
     quote:
-      "Thank you so much for your support over the past two months. Working with you one-on-one has helped me become more financially prudent, especially with budgeting. I’ve also started investing in mutual funds and stocks. You’ve been amazing.",
-    author: "1-on-1 Coaching Client",
-    role: "Personal Finance Coaching",
+      "I just wanted to say thank you for your support and help over the past two months of working with you as regards my finances one on one. You have been nothing short of amazing and it’s so nice working with you During this period working with you, I’ve learnt how to be more financially prudent especially in terms of budgeting I’ve been able to invest in mutual funds and some stocks Thank you soooo much",
+    author: "Olakunle",
+    role: "Writer",
     rating: 5,
   },
 ];
+
 
 
 export function TestimonialsSection() {
