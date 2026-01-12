@@ -114,7 +114,7 @@ export function EventsGallery() {
           {/* View More Card - Optional link */}
           <div className="flex-none w-[300px] md:w-[450px] snap-center">
             <a
-              href="https://drive.google.com/drive/folders/YOUR_MAIN_GALLERY_FOLDER_ID?usp=sharing" // Update when ready
+              href="https://drive.google.com/drive/folders/YOUR_MAIN_GALLERY_FOLDER_ID?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="block h-full cursor-pointer group"
@@ -124,16 +124,28 @@ export function EventsGallery() {
                   <h4 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold mb-3 md:mb-4 leading-tight">
                     Be Our Next Success Story
                   </h4>
+
                   <p className="text-white/80 mb-6 md:mb-8 text-sm sm:text-base max-w-xs mx-auto leading-relaxed">
                     Join the hundreds of young professionals already taking control of their money.
                   </p>
-                  <button className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white text-mountain-meadow flex items-center justify-center hover:scale-110 transition-transform shadow-lg">
+
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation(); // prevents clicking the outer link
+                      window.open(
+                        "https://api.whatsapp.com/send/?phone=2347068778156&type=phone_number&app_absent=0",
+                        "_blank"
+                      );
+                    }}
+                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white text-mountain-meadow flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
+                  >
                     <ArrowRight className="w-6 h-6 sm:w-7 sm:h-7" />
                   </button>
                 </div>
               </div>
             </a>
           </div>
+
         </div>
       </div>
 
