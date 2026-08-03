@@ -325,7 +325,7 @@ export default function Home() {
         </span>
 
         {/* Hero Content grid */}
-        <div className="flex-1 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] items-center gap-10 max-w-[1240px] mx-auto w-full px-6 md:px-16 relative z-[5] pt-8 pb-12 lg:pb-0">
+        <div className="flex-1 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] items-center gap-10 max-w-[1240px] mx-auto w-full px-6 md:px-16 relative z-[5] pt-20 md:pt-12">
           <div className="relative z-[6] text-center lg:text-left">
             <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-4">
               <span className="font-bold text-[0.72rem] tracking-widest uppercase text-white px-3 py-1 border border-white/20 rounded-full inline-flex items-center gap-1.5 bg-royal-blue/20">

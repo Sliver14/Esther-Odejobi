@@ -325,8 +325,8 @@ export default function Home() {
         </span>
 
         {/* Hero Content grid */}
-        <div className="flex-1 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] items-center gap-6 max-w-[1240px] mx-auto w-full px-6 md:px-16 relative z-[15] pt-20 pb-8 lg:pb-0">
-          <div className="relative z-[6] text-center lg:text-left">
+        <div className="flex-1 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] items-center gap-6 max-w-[1240px] mx-auto w-full px-6 md:px-16 relative z-[15] pt-4 md:pt-8 pb-8 lg:pb-0">
+          <div className="relative z-[6] text-center lg:text-left min-h-[92vh] lg:min-h-0 flex flex-col justify-center items-center lg:items-start pt-12 lg:pt-0">
             <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-3">
               <span className="font-bold text-[0.72rem] tracking-widest uppercase text-white px-3 py-1 border border-white/20 rounded-full inline-flex items-center gap-1.5 bg-royal-blue/20">
                 <span className="w-2 h-2 rounded-full bg-gold animate-pulse"></span>Money Date 2.0
@@ -346,7 +346,7 @@ export default function Home() {
             </p>
 
             {/* Event Info Panel */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6 text-white/90 max-w-2xl bg-white/5 border border-white/10 p-3 rounded-2xl backdrop-blur-md">
+            <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6 text-white/90 max-w-2xl bg-white/5 border border-white/10 p-3 rounded-2xl backdrop-blur-md">
               <div className="flex items-center gap-2">
                 <div className="relative w-8 h-8 shrink-0">
                   <Image src="/assets/Asset 12@4x.png" alt="Calendar Icon" fill className="object-contain" />
@@ -395,7 +395,7 @@ export default function Home() {
           </div>
 
           {/* Right Column: Premium Host Flyer Overlay */}
-          <div className="relative self-end h-full min-w-0 flex items-end justify-center lg:justify-end z-20">
+          <div className="relative self-end h-full min-w-0 flex items-end justify-center lg:justify-end z-10 lg:z-30">
             <div className="relative w-full max-w-[380px] flex items-end justify-center">
               <div className="absolute left-1/2 top-[40%] -translate-x-1/2 -translate-y-1/2 w-[110%] aspect-square rounded-full blur-[20px] bg-[radial-gradient(circle,rgba(0,75,183,0.5),transparent_65%)]"></div>
               <Image
@@ -403,7 +403,7 @@ export default function Home() {
                 alt="Esther Odejobi - Money Date Host"
                 width={380}
                 height={470}
-                className="relative z-10 w-full h-auto object-bottom drop-shadow-[0_20px_40px_rgba(2,12,50,0.6)] rounded-3xl"
+                className="relative z-10 w-full h-auto object-bottom drop-shadow-[0_20px_40px_rgba(2,12,50,0.6)] rounded-3xl translate-y-12 lg:translate-y-0"
                 priority
               />
             </div>
