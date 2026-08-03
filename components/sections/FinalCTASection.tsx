@@ -14,7 +14,7 @@ export function FinalCTASection() {
             Ready to Transform Your Finances?
           </p>
 
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-6 leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-6 leading-tight text-white">
             Your financial freedom journey{" "}
             <span className="text-primary">starts today.</span>
           </h2>

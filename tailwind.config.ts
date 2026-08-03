@@ -77,7 +77,18 @@ const config: Config = {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
+  			},
+        gold: '#FFA300',
+        'gold-hover': '#D98B00',
+        orange: '#FF3C00',
+        'royal-blue': '#004BB7',
+        'royal-blue-dark': '#002D6E',
+        'brand-green': '#00684A',
+        'brand-green-dark': '#004D36',
+        'brand-gray': '#ebebed',
+        ink: '#001333',
+        paper: '#ffffff',
+        'paper-2': '#f8fafc'
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
@@ -89,8 +100,34 @@ const config: Config = {
   				'Outfit',
   				'system-ui',
   				'sans-serif'
-  			]
-  		}
+  			],
+        lexendDeca: [
+          'var(--font-lexend-deca)',
+          'sans-serif'
+        ]
+  		},
+      animation: {
+        floaty: 'floaty 6s ease-in-out infinite',
+        marquee: 'marquee 30s linear infinite'
+      },
+      keyframes: {
+        floaty: {
+          '0%, 100%': {
+            transform: 'translateY(0px) rotate(0deg)'
+          },
+          '50%': {
+            transform: 'translateY(-12px) rotate(1.5deg)'
+          }
+        },
+        marquee: {
+          '0%': {
+            transform: 'translateX(0)'
+          },
+          '100%': {
+            transform: 'translateX(-50%)'
+          }
+        }
+      }
   	}
   },
   plugins: [require("tailwindcss-animate")],

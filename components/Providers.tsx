@@ -2,6 +2,7 @@
 
 import { ReactNode, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -19,15 +20,10 @@ export function Providers({ children }: ProvidersProps) {
         <Toaster />
         <Sonner />
         {children}
-        {process.env.NODE_ENV === "development" && <Devtools />}
+        {process.env.NODE_ENV === "development" && (
+          <ReactQueryDevtools initialIsOpen={false} />
+        )}
       </TooltipProvider>
     </QueryClientProvider>
   );
-}
-
-function Devtools() {
-  const DevtoolsComponent =
-    require("@tanstack/react-query-devtools").ReactQueryDevtools;
-
-  return <DevtoolsComponent initialIsOpen={false} />;
 }

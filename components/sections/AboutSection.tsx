@@ -31,7 +31,7 @@ export function AboutSection() {
               About Me
             </p>
             
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold leading-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold leading-tight text-white">
               Anyone, including <span className="text-primary">YOU</span>, can master money and build real wealth.
             </h2>
             

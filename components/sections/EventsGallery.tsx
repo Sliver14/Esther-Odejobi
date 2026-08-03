@@ -152,7 +152,7 @@ export function EventsGallery() {
       {/* Topics Covered Summary */}
       <div className="container-custom mt-16">
         <div className="bg-rich-black rounded-3xl p-8 md:p-12 text-anti-flash-white">
-          <h3 className="text-xl font-heading font-bold mb-8">Topics covered across sessions:</h3>
+          <h3 className="text-xl font-heading font-bold mb-8 text-white">Topics covered across sessions:</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-8">
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 rounded-full bg-mountain-meadow" />

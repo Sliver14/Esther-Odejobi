@@ -98,7 +98,7 @@ export function Footer() {
 
           {/* Pages */}
           <div>
-            <h4 className="font-heading font-semibold mb-4">Sections</h4>
+            <h4 className="font-heading font-semibold mb-4 text-white">Sections</h4>
             <ul className="space-y-3">
               {footerLinks.pages.map((link) => (
                 <li key={link.name}>
@@ -115,7 +115,7 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="font-heading font-semibold mb-4">Services</h4>
+            <h4 className="font-heading font-semibold mb-4 text-white">Services</h4>
             <ul className="space-y-3">
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
@@ -132,7 +132,7 @@ export function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h4 className="font-heading font-semibold mb-4">Newsletter</h4>
+            <h4 className="font-heading font-semibold mb-4 text-white">Newsletter</h4>
             <p className="text-anti-flash-white/60 text-sm">
               Get weekly tips on building wealth and wellness.
             </p>

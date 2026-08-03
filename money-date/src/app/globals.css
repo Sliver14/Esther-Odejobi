@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  --font-body: var(--font-lexend-deca), sans-serif;
+  --font-head: var(--font-lexend-deca), sans-serif;
+  --font-display: var(--font-lexend-deca), sans-serif;
+
+  --color-emerald: #004BB7;
+  --color-emerald-dark: #002D6E;
+  --color-gold: #FFA300;
+  --color-gold-hover: #D98B00;
+  --color-orange: #FF3C00;
+  --color-royal-blue: #004BB7;
+  --color-royal-blue-dark: #002D6E;
+  --color-brand-green: #00684A;
+  --color-brand-green-dark: #004D36;
+  --color-brand-gray: #ebebed;
+  --color-ink: #001333;
+  --color-muted: #94a3b8;
+  --color-paper: #ffffff;
+  --color-paper-2: #f8fafc;
+
+  --animate-floaty: floaty 6s ease-in-out infinite;
+  --animate-marquee: marquee 30s linear infinite;
+
+  @keyframes floaty {
+
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+      transform: translateY(-12px) rotate(1.5deg);
+    }
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+/* Base custom styles */
+body {
+  font-family: var(--font-body);
+}
+
+/* Glassmorphism utility */
+.glass-header {
+  background: rgba(0, 75, 183, 1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #001333;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #004BB7;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FFA300;
+}

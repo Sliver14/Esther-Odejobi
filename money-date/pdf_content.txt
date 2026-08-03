@@ -1,0 +1,65 @@
+--- PAGE 1 ---
+Deep Emerald Green
+Hex: #00684A
+40%
+RGB: 0, 104, 74
+Golden Amber
+Hex: #FFA300
+20%
+RGB: 255, 163, 0
+Vibrant Orange
+Hex: #FF3C00
+20%
+RGB: 255, 60, 0
+Royal Blue
+Hex: #004BB7
+20%
+RGB: 0, 75, 183
+Color System
+The Money Date with Esther 
+Odejobi color system is designed to 
+communicate conﬁdence, clarity, 
+growth, and optimism. Each color 
+represents a core aspect of the 
+event's identity while working 
+together to create a vibrant yet 
+professional visual language. The 
+palette balances trust and stability 
+with warmth and energy, reﬂecting 
+the event's mission of empowering 
+intentional ﬁnancial growth 
+through meaningful conversations.
+To maintain consistency across all 
+brand touchpoints, each primary 
+color is supported by a 
+monochromatic gradient system, 
+allowing the identity to feel 
+dynamic, cohesive, and premium 
+across print, digital, and 
+environmental applications.
+--- PAGE 2 ---
+Light
+Gradient
+Hex: #004BB7
+Hex: #ebebed
+Hex: #FFFFFF
+Hex: #00684A
+--- PAGE 3 ---
+Dark
+Gradient
+Hex: #004BB7
+Hex: #FFA300
+Hex: #ff3c00
+Hex: #000000
+--- PAGE 4 ---
+Typography
+Lexend Deca
+ABCDabcd
+1234$#@*
+--- PAGE 5 ---
+Learn
+Connect
+Grow
+Learn
+Connect
+Grow
