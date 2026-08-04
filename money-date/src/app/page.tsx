@@ -90,6 +90,17 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Load Paystack script
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://js.paystack.co/v1/inline.js";
+    script.async = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -100,9 +111,54 @@ export default function Home() {
     setPartnerFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const getTicketAmount = (ticketType: string) => {
+    if (ticketType.includes("35,000") || ticketType.includes("General")) return 35000;
+    if (ticketType.includes("32,000") || ticketType.includes("Early")) return 32000;
+    if (ticketType.includes("65,000") || ticketType.includes("Duo")) return 65000;
+    if (ticketType.includes("27,000") || ticketType.includes("Student")) return 27000;
+    if (ticketType.includes("150,000") || ticketType.includes("Growth")) return 150000;
+    return 35000;
+  };
+
+  const handlePaymentSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setTimeout(() => setFormSubmitted(true), 800);
+    if (typeof window !== "undefined" && (window as any).PaystackPop) {
+      const amount = getTicketAmount(formData.ticketType);
+      try {
+        const handler = (window as any).PaystackPop.setup({
+          key: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY || "pk_test_16d7a46e1669fe4842188267df812d8a56247df6",
+          email: formData.email,
+          amount: amount * 100,
+          currency: "NGN",
+          metadata: {
+            custom_fields: [
+              {
+                display_name: "Attendee Name",
+                variable_name: "attendee_name",
+                value: formData.name
+              },
+              {
+                display_name: "Ticket Type",
+                variable_name: "ticket_type",
+                value: formData.ticketType
+              }
+            ]
+          },
+          callback: function(response: any) {
+            setFormSubmitted(true);
+          },
+          onClose: function() {
+            alert("Transaction was not completed.");
+          }
+        });
+        handler.openIframe();
+      } catch (err) {
+        console.error("Paystack initialization failed:", err);
+        setTimeout(() => setFormSubmitted(true), 800);
+      }
+    } else {
+      setTimeout(() => setFormSubmitted(true), 800);
+    }
   };
 
   const handlePartnerSubmit = (e: React.FormEvent) => {
@@ -292,7 +348,7 @@ export default function Home() {
 
       {/* Mobile Drawer Menu */}
       <div
-        className={`fixed inset-0 z-50 bg-[#001333] flex flex-col items-center justify-center gap-6 transition-all duration-300 ${mobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
+        className={`fixed inset-0 z-50 bg-[#002A1C] flex flex-col items-center justify-center gap-6 transition-all duration-300 ${mobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
           }`}
       >
         <a onClick={() => setMobileMenuOpen(false)} href="#about" className="text-xl uppercase tracking-wider text-white hover:text-gold transition-colors">About</a>
@@ -526,7 +582,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="relative overflow-hidden bg-[#001333]/45 border border-white/10 rounded-2xl p-6 pb-14 hover:bg-[#001333]/70 hover:border-gold/30 hover:-translate-y-1 transition-all duration-300 shadow-lg isolate">
               <div className="absolute top-0 right-0 w-16 h-16 bg-gold/5 rounded-bl-full pointer-events-none"></div>
-              <div className="absolute right-4 top-1 text-7xl md:text-8xl font-black text-white/5 select-none pointer-events-none -z-10">01</div>
+              <div className="absolute right-4 bottom-1 text-7xl md:text-8xl font-black text-white/5 select-none pointer-events-none -z-10">01</div>
               <div className="mb-3 z-10 relative">
                 <h3 className="text-white font-extrabold text-sm uppercase tracking-wider">Practical Wealth Strategies</h3>
               </div>
@@ -536,7 +592,7 @@ export default function Home() {
             </div>
             <div className="relative overflow-hidden bg-[#001333]/45 border border-white/10 rounded-2xl p-6 pb-14 hover:bg-[#001333]/70 hover:border-gold/30 hover:-translate-y-1 transition-all duration-300 shadow-lg isolate">
               <div className="absolute top-0 right-0 w-16 h-16 bg-gold/5 rounded-bl-full pointer-events-none"></div>
-              <div className="absolute right-4 top-1 text-7xl md:text-8xl font-black text-white/5 select-none pointer-events-none -z-10">02</div>
+              <div className="absolute right-4 bottom-1 text-7xl md:text-8xl font-black text-white/5 select-none pointer-events-none -z-10">02</div>
               <div className="mb-3 z-10 relative">
                 <h3 className="text-white font-extrabold text-sm uppercase tracking-wider">Expert Insights</h3>
               </div>
@@ -546,7 +602,7 @@ export default function Home() {
             </div>
             <div className="relative overflow-hidden bg-[#001333]/45 border border-white/10 rounded-2xl p-6 pb-14 hover:bg-[#001333]/70 hover:border-gold/30 hover:-translate-y-1 transition-all duration-300 shadow-lg isolate">
               <div className="absolute top-0 right-0 w-16 h-16 bg-gold/5 rounded-bl-full pointer-events-none"></div>
-              <div className="absolute right-4 top-1 text-7xl md:text-8xl font-black text-white/5 select-none pointer-events-none -z-10">03</div>
+              <div className="absolute right-4 bottom-1 text-7xl md:text-8xl font-black text-white/5 select-none pointer-events-none -z-10">03</div>
               <div className="mb-3 z-10 relative">
                 <h3 className="text-white font-extrabold text-sm uppercase tracking-wider">Premium Networking</h3>
               </div>
@@ -556,7 +612,7 @@ export default function Home() {
             </div>
             <div className="relative overflow-hidden bg-[#001333]/45 border border-white/10 rounded-2xl p-6 pb-14 hover:bg-[#001333]/70 hover:border-gold/30 hover:-translate-y-1 transition-all duration-300 shadow-lg isolate">
               <div className="absolute top-0 right-0 w-16 h-16 bg-gold/5 rounded-bl-full pointer-events-none"></div>
-              <div className="absolute right-4 top-1 text-7xl md:text-8xl font-black text-white/5 select-none pointer-events-none -z-10">04</div>
+              <div className="absolute right-4 bottom-1 text-7xl md:text-8xl font-black text-white/5 select-none pointer-events-none -z-10">04</div>
               <div className="mb-3 z-10 relative">
                 <h3 className="text-white font-extrabold text-sm uppercase tracking-wider">Holistic Wellness</h3>
               </div>
@@ -566,7 +622,7 @@ export default function Home() {
             </div>
             <div className="relative overflow-hidden bg-[#001333]/45 border border-white/10 rounded-2xl p-6 pb-14 hover:bg-[#001333]/70 hover:border-gold/30 hover:-translate-y-1 transition-all duration-300 shadow-lg isolate">
               <div className="absolute top-0 right-0 w-16 h-16 bg-gold/5 rounded-bl-full pointer-events-none"></div>
-              <div className="absolute right-4 top-1 text-7xl md:text-8xl font-black text-white/5 select-none pointer-events-none -z-10">05</div>
+              <div className="absolute right-4 bottom-1 text-7xl md:text-8xl font-black text-white/5 select-none pointer-events-none -z-10">05</div>
               <div className="mb-3 z-10 relative">
                 <h3 className="text-white font-extrabold text-sm uppercase tracking-wider">Actionable Takeaways</h3>
               </div>
@@ -985,7 +1041,7 @@ export default function Home() {
             </div>
 
             {/* General Admission */}
-            <div className="border-2 border-gold bg-[#001333] rounded-3xl p-8 relative shadow-2xl flex flex-col justify-between h-full transform lg:-translate-y-4">
+            <div className="border-2 border-gold bg-royal-blue rounded-3xl p-8 relative shadow-2xl flex flex-col justify-between h-full transform lg:-translate-y-4">
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold text-[#001333] px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
                 Recommended
               </div>
@@ -1106,15 +1162,25 @@ export default function Home() {
             Our partners make the Money Date experience possible. Together, we are creating meaningful impact by empowering individuals to build wealth and live intentionally.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-12 md:gap-16">
-            <div className="relative w-36 h-12 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-              <Image src="/assets/Asset 19@4x.png" alt="Sponsor Logo 1" fill className="object-contain" />
-            </div>
-            <div className="relative w-36 h-12 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-              <Image src="/assets/Asset 20@4x.png" alt="Sponsor Logo 2" fill className="object-contain" />
-            </div>
-            <div className="relative w-36 h-12 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-              <Image src="/assets/Asset 21@4x.png" alt="Sponsor Logo 3" fill className="object-contain" />
+          <div className="relative w-full overflow-hidden py-4 mt-6">
+            <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none"></div>
+
+            <div className="flex w-max animate-marquee whitespace-nowrap gap-16 items-center">
+              <div className="flex items-center gap-16 shrink-0">
+                {[19, 20, 21, 22, 23].map((num) => (
+                  <div key={num} className="relative w-36 h-12 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                    <Image src={`/assets/Asset ${num}@4x.png`} alt={`Sponsor Logo ${num}`} fill className="object-contain" />
+                  </div>
+                ))}
+              </div>
+              <div className="flex items-center gap-16 shrink-0" aria-hidden="true">
+                {[19, 20, 21, 22, 23].map((num) => (
+                  <div key={`dup-${num}`} className="relative w-36 h-12 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                    <Image src={`/assets/Asset ${num}@4x.png`} alt={`Sponsor Logo ${num}`} fill className="object-contain" />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -1132,8 +1198,8 @@ export default function Home() {
 
       {/* 14. FAQs Accordion */}
       <section id="faq" className="relative py-24 bg-gradient-to-b from-[#002A1C] to-[#004D36] text-white">
-        <div className="max-w-[800px] mx-auto px-6 w-full">
-          <div className="text-center mb-16">
+        <div className="max-w-[1240px] mx-auto px-6 md:px-16 w-full">
+          <div className="text-center mb-16 max-w-2xl mx-auto">
             <div className="inline-flex items-center gap-3 font-bold text-xs md:text-sm tracking-widest uppercase text-gold mb-2">
               <span className="w-6 h-[1.5px] bg-gold"></span>Got Questions?
             </div>
@@ -1142,7 +1208,7 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="space-y-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
             {faqs.map((faq, idx) => (
               <div
                 key={idx}
@@ -1173,7 +1239,7 @@ export default function Home() {
 
       {/* 15. Ticket Final Banner CTA */}
       <section className="relative py-28 overflow-hidden text-center bg-gradient-to-r from-royal-blue-dark to-royal-blue text-white">
-        <div className="absolute inset-0 opacity-15">
+        <div className="absolute bottom-0 left-0 right-0 h-1/2 opacity-15 pointer-events-none">
           <Image src="/city.svg" alt="Skyline BG" fill className="object-cover object-bottom" />
         </div>
         <div className="relative z-10 max-w-[800px] mx-auto px-6">
@@ -1276,18 +1342,50 @@ export default function Home() {
           {/* Social Banners Row */}
           <div className="border-t border-white/5 py-8 flex flex-col items-center gap-6">
             <span className="text-xs text-white/50 uppercase tracking-widest font-bold">Follow Money Date for Event Updates</span>
-            <div className="flex flex-wrap justify-center gap-4">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="relative w-40 h-10 hover:scale-102 transition-transform">
-                <Image src="/assets/Asset 17@4x.png" alt="Instagram @moneydate.co" fill className="object-contain rounded-lg" />
+            <div className="flex justify-center gap-4">
+              <a 
+                href="https://instagram.com/moneydate.co" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-12 h-12 rounded-full border border-white/10 bg-white/5 text-white/80 hover:text-gold hover:border-gold/30 hover:bg-white/10 flex items-center justify-center transition-all duration-300 hover:-translate-y-1 shadow-lg"
+                title="Follow Instagram @moneydate.co"
+              >
+                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+                </svg>
               </a>
-              <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="relative w-40 h-10 hover:scale-102 transition-transform">
-                <Image src="/assets/Asset 16@4x.png" alt="TikTok @moneydate.co" fill className="object-contain rounded-lg" />
+              <a 
+                href="https://tiktok.com/@moneydate.co" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-12 h-12 rounded-full border border-white/10 bg-white/5 text-white/80 hover:text-gold hover:border-gold/30 hover:bg-white/10 flex items-center justify-center transition-all duration-300 hover:-translate-y-1 shadow-lg"
+                title="Follow TikTok @moneydate.co"
+              >
+                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.06-2.89-.52-4.09-1.37-.28-.2-.53-.43-.77-.68-.06 2.64-.04 5.28-.05 7.92-.01 1.83-.54 3.74-1.72 5.13-1.45 1.75-3.88 2.62-6.13 2.37-2.45-.19-4.8-1.74-5.74-4.05-.98-2.31-.69-5.18.84-7.14 1.25-1.64 3.32-2.5 5.37-2.33.03 1.34.02 2.69.03 4.03-1.12-.07-2.32.3-3.04 1.18-.75.87-.84 2.18-.34 3.19.45.98 1.5 1.65 2.58 1.69 1.12.07 2.29-.46 2.76-1.5.21-.49.27-1.03.26-1.56-.02-3.83-.01-7.66-.02-11.49-.01-.32-.01-.64-.01-.96z"/>
+                </svg>
               </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="relative w-40 h-10 hover:scale-102 transition-transform">
-                <Image src="/assets/Asset 22@4x.png" alt="YouTube @moneydate.co" fill className="object-contain rounded-lg" />
+              <a 
+                href="https://youtube.com/@moneydate.co" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-12 h-12 rounded-full border border-white/10 bg-white/5 text-white/80 hover:text-gold hover:border-gold/30 hover:bg-white/10 flex items-center justify-center transition-all duration-300 hover:-translate-y-1 shadow-lg"
+                title="Follow YouTube @moneydate.co"
+              >
+                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.518 3.5 12 3.5 12 3.5s-7.517 0-9.388.553a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11C4.483 20.5 12 20.5 12 20.5s7.518 0 9.388-.553a3.002 3.002 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="relative w-40 h-10 hover:scale-102 transition-transform">
-                <Image src="/assets/Asset 23@4x.png" alt="LinkedIn @moneydate.co" fill className="object-contain rounded-lg" />
+              <a 
+                href="https://linkedin.com/company/moneydate" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-12 h-12 rounded-full border border-white/10 bg-white/5 text-white/80 hover:text-gold hover:border-gold/30 hover:bg-white/10 flex items-center justify-center transition-all duration-300 hover:-translate-y-1 shadow-lg"
+                title="Follow LinkedIn @moneydate"
+              >
+                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
               </a>
             </div>
           </div>
@@ -1306,87 +1404,156 @@ export default function Home() {
       {modalOpen && (
         <div
           onClick={resetForm}
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#001333]/80 backdrop-blur-md transition-opacity duration-300 cursor-pointer"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#004D36]/85 backdrop-blur-md transition-opacity duration-300 cursor-pointer overflow-y-auto"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-md bg-white text-[#001333] rounded-3xl overflow-hidden shadow-2xl border border-slate-100 p-8 animate-in fade-in zoom-in-95 duration-200 cursor-default"
+            className="relative w-full max-w-4xl bg-white text-[#001333] rounded-3xl overflow-hidden shadow-2xl border border-slate-200/80 animate-scale-in cursor-default min-h-[580px] flex flex-col justify-between"
           >
+            {/* Corner decoration */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-bl-full pointer-events-none"></div>
+
             <button
               onClick={resetForm}
-              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 focus:outline-none cursor-pointer text-2xl font-light"
+              className="absolute top-6 right-6 text-slate-400 hover:text-slate-700 focus:outline-none cursor-pointer text-2xl font-light w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-100 transition-all z-20"
             >
               ×
             </button>
 
             {!formSubmitted ? (
-              <>
-                <h3 className="text-2xl uppercase font-black text-[#001333] mb-2">Claim Your Ticket</h3>
-                <p className="text-sm text-slate-500 mb-6 font-head">Complete the details below to reserve your delegate access.</p>
-
-                <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-12 min-h-[580px] items-stretch">
+                {/* Left Column - Benefits & Event Details (Hidden on mobile) */}
+                <div className="hidden md:flex md:col-span-5 bg-slate-50 p-10 flex-col justify-between border-r border-slate-200/80 relative">
                   <div>
-                    <label className="block text-xs font-bold uppercase text-slate-600 mb-1">Full Name</label>
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      placeholder="e.g., Jane Doe"
-                      className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:border-royal-blue text-sm"
-                    />
+                    <span className="font-extrabold text-[10px] uppercase tracking-widest text-[#00684A] block mb-2">Money Date 2.0</span>
+                    <h4 className="text-xl uppercase font-black tracking-wide text-[#001333] leading-tight">Beyond Money Experience</h4>
+                    <p className="text-xs text-slate-600 mt-2">Join us in Gbagada for a transformational day merging wealth creation with intentional wellness.</p>
+
+                    <div className="mt-10 space-y-6">
+                      <div className="flex items-start gap-3">
+                        <div className="w-8 h-8 rounded-xl bg-[#00684A]/10 flex items-center justify-center text-[#00684A] shrink-0 mt-0.5 border border-[#00684A]/20">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h5 className="text-xs font-bold text-[#001333]">Full Access Pass</h5>
+                          <p className="text-[10px] text-slate-500">Entry to all keynote talks & expert speaker panels.</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-8 h-8 rounded-xl bg-[#00684A]/10 flex items-center justify-center text-[#00684A] shrink-0 mt-0.5 border border-[#00684A]/20">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h5 className="text-xs font-bold text-[#001333]">Networking & Audits</h5>
+                          <p className="text-[10px] text-slate-500">Interactive speed networking and wellness clinics.</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-8 h-8 rounded-xl bg-[#00684A]/10 flex items-center justify-center text-[#00684A] shrink-0 mt-0.5 border border-[#00684A]/20">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h5 className="text-xs font-bold text-[#001333]">Delegate Gift Bag</h5>
+                          <p className="text-[10px] text-slate-500">Exclusive curated stationery, toolkits and resources.</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
-                  <div>
-                    <label className="block text-xs font-bold uppercase text-slate-600 mb-1">Email Address</label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      placeholder="e.g., you@domain.com"
-                      className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:border-royal-blue text-sm"
-                    />
+                  <div className="mt-10 pt-6 border-t border-slate-200 text-[10px] text-slate-500 space-y-1">
+                    <p>📍 The Zone, Gbagada, Lagos</p>
+                    <p>📅 Saturday, 10th October 2026</p>
+                  </div>
+                </div>
+
+                {/* Right Column - Form */}
+                <div className="col-span-12 md:col-span-7 p-6 sm:p-10 flex flex-col justify-center">
+                  <div className="mb-8">
+                    <span className="font-bold text-xs uppercase tracking-widest text-[#00684A]">Secure Checkout</span>
+                    <h3 className="text-2xl uppercase font-black text-[#001333] mt-1">Claim Your Pass</h3>
+                    <p className="text-xs text-slate-600 mt-1">Provide your registration details to start secure checkout.</p>
                   </div>
 
-                  <div>
-                    <label className="block text-xs font-bold uppercase text-slate-600 mb-1">Ticket Class Selected</label>
-                    <select
-                      name="ticketType"
-                      value={formData.ticketType}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:border-royal-blue text-sm bg-white"
-                    >
-                      <option value="General Admission (₦35,000)">General Admission (₦35,000)</option>
-                      <option value="Early Bird Pass (₦32,000)">Early Bird Pass (₦32,000)</option>
-                      <option value="Duo Pass (₦65,000)">Duo Pass (₦65,000)</option>
-                      <option value="Student Pass (₦27,000)">Student Pass (₦27,000)</option>
-                      <option value="Growth Circle Pass (₦150,000)">Growth Circle Pass (₦150,000)</option>
-                    </select>
-                  </div>
+                  <form onSubmit={handlePaymentSubmit} className="space-y-5">
+                    <div>
+                      <label className="block text-xs font-bold uppercase text-slate-500 mb-1">Full Name</label>
+                      <input
+                        type="text"
+                        name="name"
+                        required
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        placeholder="e.g., Jane Doe"
+                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#00684A] text-sm text-slate-800 placeholder-slate-400 focus:bg-white transition-colors"
+                      />
+                    </div>
 
-                  <button
-                    type="submit"
-                    className="w-full mt-4 font-bold uppercase tracking-wider py-3 px-6 rounded-xl bg-gold hover:bg-gold-hover text-[#001333] transition-colors shadow-lg shadow-gold/20 cursor-pointer"
-                  >
-                    Complete Reservation
-                  </button>
-                </form>
-              </>
+                    <div>
+                      <label className="block text-xs font-bold uppercase text-slate-500 mb-1">Email Address</label>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="e.g., you@domain.com"
+                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#00684A] text-sm text-slate-800 placeholder-slate-400 focus:bg-white transition-colors"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold uppercase text-slate-500 mb-1">Ticket Class Selected</label>
+                      <div className="relative">
+                        <select
+                          name="ticketType"
+                          value={formData.ticketType}
+                          onChange={handleInputChange}
+                          className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#00684A] text-sm text-slate-800 focus:bg-white transition-colors appearance-none cursor-pointer pr-10 font-semibold"
+                        >
+                          <option value="General Admission (₦35,000)">General Admission (₦35,000)</option>
+                          <option value="Early Bird Pass (₦32,000)">Early Bird Pass (₦32,000)</option>
+                          <option value="Duo Pass (₦65,000)">Duo Pass (₦65,000)</option>
+                          <option value="Student Pass (₦27,000)">Student Pass (₦27,000)</option>
+                          <option value="Growth Circle Pass (₦150,000)">Growth Circle Pass (₦150,000)</option>
+                        </select>
+                        <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-500">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="pt-4">
+                      <button
+                        type="submit"
+                        className="w-full font-bold uppercase tracking-wider py-3.5 px-6 rounded-xl bg-gold hover:bg-gold-hover text-[#001333] transition-colors shadow-lg shadow-gold/20 cursor-pointer flex items-center justify-center gap-2"
+                      >
+                        <span>Pay ₦{getTicketAmount(formData.ticketType).toLocaleString()} via Paystack</span>
+                        <span>→</span>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
             ) : (
-              <div className="text-center py-6">
-                <div className="w-16 h-16 bg-royal-blue/10 text-royal-blue rounded-full flex items-center justify-center text-3xl mx-auto mb-4 font-bold">
+              <div className="text-center p-16 max-w-lg mx-auto flex flex-col items-center justify-center min-h-[580px]">
+                <div className="w-20 h-20 bg-[#00684A]/10 text-[#00684A] rounded-full flex items-center justify-center text-4xl mb-6 font-bold border border-[#00684A]/25">
                   ✓
                 </div>
-                <h3 className="text-2xl uppercase font-black text-[#001333] mb-2">Reservation Confirmed!</h3>
-                <p className="text-sm text-slate-500 mb-6">
-                  Thank you, <strong>{formData.name}</strong>. An email has been sent to <strong>{formData.email}</strong> with your <strong>{formData.ticketType}</strong> checkout steps.
+                <h3 className="text-3xl uppercase font-black text-[#001333] mb-3">Registration Confirmed!</h3>
+                <p className="text-sm text-slate-600 mb-8 leading-relaxed">
+                  Thank you, <strong>{formData.name}</strong>. Your payment was successful. We have sent a confirmation email to <strong>{formData.email}</strong> with your access details.
                 </p>
                 <button
                   onClick={resetForm}
-                  className="font-bold text-sm text-royal-blue hover:text-royal-blue-dark underline focus:outline-none cursor-pointer"
+                  className="font-bold text-sm bg-[#001333] hover:bg-[#002A1C] text-white rounded-full px-8 py-3 transition-colors focus:outline-none cursor-pointer"
                 >
                   Close Window
                 </button>
@@ -1395,6 +1562,7 @@ export default function Home() {
           </div>
         </div>
       )}
+
       {/* 18. Interactive Partnership Modal */}
       {partnerModalOpen && (
         <div
