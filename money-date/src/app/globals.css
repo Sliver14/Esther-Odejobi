@@ -5,15 +5,15 @@
   --font-head: var(--font-lexend-deca), sans-serif;
   --font-display: var(--font-lexend-deca), sans-serif;
 
-  --color-emerald: #004BB7;
-  --color-emerald-dark: #002D6E;
+  --color-emerald: #00684A;
+  --color-emerald-dark: #004D36;
   --color-gold: #FFA300;
   --color-gold-hover: #D98B00;
   --color-orange: #FF3C00;
-  --color-royal-blue: #004BB7;
-  --color-royal-blue-dark: #002D6E;
-  --color-brand-green: #00684A;
-  --color-brand-green-dark: #004D36;
+  --color-royal-blue: #00684A;
+  --color-royal-blue-dark: #004D36;
+  --color-brand-green: #004BB7;
+  --color-brand-green-dark: #002D6E;
   --color-brand-gray: #ebebed;
   --color-ink: #001333;
   --color-muted: #94a3b8;
@@ -53,7 +53,7 @@ body {
 
 /* Glassmorphism utility */
 .glass-header {
-  background: rgba(0, 75, 183, 1);
+  background: rgba(0, 104, 74, 1);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
@@ -68,7 +68,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #004BB7;
+  background: #00684A;
   border-radius: 4px;
 }
 

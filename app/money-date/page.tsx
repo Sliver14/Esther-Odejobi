@@ -10,6 +10,12 @@ export default function Home() {
   const [partnerModalOpen, setPartnerModalOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
+  const [activeSpeaker, setActiveSpeaker] = useState<{
+    name: string;
+    role: string;
+    desc: string;
+    img: string;
+  } | null>(null);
 
   const gallerySlides = [
     {
@@ -136,16 +142,19 @@ export default function Home() {
   // Panelists details
   const panelists = [
     {
+      name: "TBA",
       role: "Personal Finance Educator",
       desc: "Helping individuals build healthier financial habits and create sustainable wealth through practical financial education.",
       img: "/assets/Asset 8@4x.png" // Green container, gold MD monogram
     },
     {
+      name: "TBA",
       role: "Wellness & Nutrition Expert",
       desc: "Passionate about promoting healthier lifestyles through nutrition, preventive healthcare, and holistic wellness.",
       img: "/assets/Asset 9@4x.png" // Dark container, gold MD monogram
     },
     {
+      name: "TBA",
       role: "Real Estate & Agribusiness Entrepreneur",
       desc: "An entrepreneur committed to creating sustainable wealth through real estate, agriculture, and strategic business investments.",
       img: "/assets/Asset 11@4x.png" // Gold container, dark MD monogram
@@ -307,10 +316,10 @@ export default function Home() {
       {/* 2. Hero Section */}
       <header
         id="top"
-        className="relative min-h-[100vh] lg:min-h-[90vh] overflow-hidden flex flex-col bg-[radial-gradient(120%_80%_at_78%_-5%,rgba(255,255,255,0.15),transparent_55%),radial-gradient(90%_70%_at_10%_110%,rgba(0,75,183,0.45),transparent_60%),linear-gradient(160deg,#004BB7_0%,#003294_45%,#001C66_100%)] pt-6 lg:py-8"
+        className="relative min-h-[100vh] lg:min-h-[90vh] overflow-hidden flex flex-col bg-[radial-gradient(120%_80%_at_78%_-5%,rgba(255,255,255,0.15),transparent_55%),radial-gradient(90%_70%_at_10%_110%,rgba(0,104,74,0.45),transparent_60%),linear-gradient(160deg,#00684A_0%,#004D36_45%,#002A1C_100%)] pt-6 lg:py-8"
       >
         {/* Angular mesh visual highlights */}
-        <div aria-hidden="true" className="absolute inset-0 pointer-events-none mix-blend-screen bg-[linear-gradient(74deg,transparent_46%,rgba(255,255,255,0.02)_47%,rgba(255,255,255,0.02)_49%,transparent_50%),linear-gradient(110deg,transparent_60%,rgba(0,75,183,0.15)_61%,transparent_70%)]"></div>
+        <div aria-hidden="true" className="absolute inset-0 pointer-events-none mix-blend-screen bg-[linear-gradient(74deg,transparent_46%,rgba(255,255,255,0.02)_47%,rgba(255,255,255,0.02)_49%,transparent_50%),linear-gradient(110deg,transparent_60%,rgba(0,104,74,0.15)_61%,transparent_70%)]"></div>
 
         {/* Floating coins */}
         <span className="absolute z-[3] bottom-[15%] left-[-4%] hidden xl:block">
@@ -348,8 +357,13 @@ export default function Home() {
             {/* Event Info Panel */}
             <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6 text-white/90 max-w-2xl bg-white/5 border border-white/10 p-3 rounded-2xl backdrop-blur-md">
               <div className="flex items-center gap-2">
-                <div className="relative w-8 h-8 shrink-0">
-                  <Image src="/assets/Asset 12@4x.png" alt="Calendar Icon" fill className="object-contain" />
+                <div className="w-8 h-8 rounded-lg bg-gold/10 flex items-center justify-center text-gold shrink-0 border border-gold/20">
+                  <svg className="w-4.5 h-4.5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <rect x={3} y={4} width={18} height={18} rx={2} ry={2} />
+                    <line x1={16} y1={2} x2={16} y2={6} />
+                    <line x1={8} y1={2} x2={8} y2={6} />
+                    <line x1={3} y1={10} x2={21} y2={10} />
+                  </svg>
                 </div>
                 <div className="text-left">
                   <span className="font-extrabold text-xs block leading-tight">Saturday, 10th Oct 2026</span>
@@ -357,8 +371,11 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex items-center gap-2 border-t sm:border-t-0 sm:border-x border-white/10 pt-2 sm:pt-0 sm:px-2">
-                <div className="relative w-8 h-8 shrink-0">
-                  <Image src="/assets/Asset 13@4x.png" alt="Clock Icon" fill className="object-contain" />
+                <div className="w-8 h-8 rounded-lg bg-gold/10 flex items-center justify-center text-gold shrink-0 border border-gold/20">
+                  <svg className="w-4.5 h-4.5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <circle cx={12} cy={12} r={10} />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
                 </div>
                 <div className="text-left">
                   <span className="font-extrabold text-xs block leading-tight">11:00 AM – 4:00 PM</span>
@@ -366,8 +383,11 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex items-center gap-2 border-t sm:border-t-0 pt-2 sm:pt-0">
-                <div className="relative w-8 h-8 shrink-0">
-                  <Image src="/assets/Asset 14@4x.png" alt="Location Icon" fill className="object-contain" />
+                <div className="w-8 h-8 rounded-lg bg-gold/10 flex items-center justify-center text-gold shrink-0 border border-gold/20">
+                  <svg className="w-4.5 h-4.5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path d="M12 2a8 8 0 00-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 00-8-8z" />
+                    <circle cx={12} cy={10} r={3} />
+                  </svg>
                 </div>
                 <div className="text-left">
                   <span className="font-extrabold text-xs block leading-tight">The Zone, Gbagada</span>
@@ -397,7 +417,7 @@ export default function Home() {
           {/* Right Column: Premium Host Flyer Overlay */}
           <div className="relative self-end h-full min-w-0 flex items-end justify-center lg:justify-end z-10 lg:z-30">
             <div className="relative w-full max-w-[380px] flex items-end justify-center">
-              <div className="absolute left-1/2 top-[40%] -translate-x-1/2 -translate-y-1/2 w-[110%] aspect-square rounded-full blur-[20px] bg-[radial-gradient(circle,rgba(0,75,183,0.5),transparent_65%)]"></div>
+              <div className="absolute left-1/2 top-[40%] -translate-x-1/2 -translate-y-1/2 w-[110%] aspect-square rounded-full blur-[20px] bg-[radial-gradient(circle,rgba(0,104,74,0.5),transparent_65%)]"></div>
               <Image
                 src="/assets/esther-about1.png"
                 alt="Esther Odejobi - Money Date Host"
@@ -419,10 +439,9 @@ export default function Home() {
         </div>
       </header>
 
-      {/* 3. Scrolling Ribbon Marquee */}
       <section className="relative w-full overflow-hidden bg-royal-blue py-4 z-20 border-y border-white/10 shadow-lg">
-        <div className="flex w-[200%] gap-4 animate-marquee whitespace-nowrap">
-          <div className="flex justify-around w-full items-center">
+        <div className="flex w-max animate-marquee whitespace-nowrap gap-12">
+          <div className="flex items-center gap-12 shrink-0">
             <span className="text-white font-extrabold uppercase text-xs md:text-sm tracking-[0.2em] inline-flex items-center gap-4">
               LEARN <span className="text-gold">•</span> CONNECT <span className="text-gold">•</span> GROW <span className="text-gold">•</span> MONEY DATE 2.0
             </span>
@@ -433,7 +452,7 @@ export default function Home() {
               SATURDAY, 10TH OCTOBER 2026 <span className="text-gold">•</span> THE ZONE, GBAGADA
             </span>
           </div>
-          <div className="flex justify-around w-full items-center">
+          <div className="flex items-center gap-12 shrink-0" aria-hidden="true">
             <span className="text-white font-extrabold uppercase text-xs md:text-sm tracking-[0.2em] inline-flex items-center gap-4">
               LEARN <span className="text-gold">•</span> CONNECT <span className="text-gold">•</span> GROW <span className="text-gold">•</span> MONEY DATE 2.0
             </span>
@@ -505,33 +524,53 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-[#001333]/45 border border-white/10 rounded-2xl p-6 hover:bg-[#001333]/70 hover:border-gold/30 hover:-translate-y-1 transition-all duration-300 shadow-lg">
-              <div className="text-gold font-bold text-xl mb-3">01 / Practical Wealth Strategies</div>
-              <p className="text-white/80 text-sm leading-relaxed">
+            <div className="relative overflow-hidden bg-[#001333]/45 border border-white/10 rounded-2xl p-6 pb-14 hover:bg-[#001333]/70 hover:border-gold/30 hover:-translate-y-1 transition-all duration-300 shadow-lg isolate">
+              <div className="absolute top-0 right-0 w-16 h-16 bg-gold/5 rounded-bl-full pointer-events-none"></div>
+              <div className="absolute right-4 top-1 text-7xl md:text-8xl font-black text-white/5 select-none pointer-events-none -z-10">01</div>
+              <div className="mb-3 z-10 relative">
+                <h3 className="text-white font-extrabold text-sm uppercase tracking-wider">Practical Wealth Strategies</h3>
+              </div>
+              <p className="text-white/80 text-sm leading-relaxed relative z-10">
                 Acquire direct financial strategies to help you earn, manage, grow, and enjoy your money in today's landscape.
               </p>
             </div>
-            <div className="bg-[#001333]/45 border border-white/10 rounded-2xl p-6 hover:bg-[#001333]/70 hover:border-gold/30 hover:-translate-y-1 transition-all duration-300 shadow-lg">
-              <div className="text-gold font-bold text-xl mb-3">02 / Expert Insights</div>
-              <p className="text-white/80 text-sm leading-relaxed">
+            <div className="relative overflow-hidden bg-[#001333]/45 border border-white/10 rounded-2xl p-6 pb-14 hover:bg-[#001333]/70 hover:border-gold/30 hover:-translate-y-1 transition-all duration-300 shadow-lg isolate">
+              <div className="absolute top-0 right-0 w-16 h-16 bg-gold/5 rounded-bl-full pointer-events-none"></div>
+              <div className="absolute right-4 top-1 text-7xl md:text-8xl font-black text-white/5 select-none pointer-events-none -z-10">02</div>
+              <div className="mb-3 z-10 relative">
+                <h3 className="text-white font-extrabold text-sm uppercase tracking-wider">Expert Insights</h3>
+              </div>
+              <p className="text-white/80 text-sm leading-relaxed relative z-10">
                 Learn directly from respected leaders in finance, wellness, business, and investments during keynotes and panels.
               </p>
             </div>
-            <div className="bg-[#001333]/45 border border-white/10 rounded-2xl p-6 hover:bg-[#001333]/70 hover:border-gold/30 hover:-translate-y-1 transition-all duration-300 shadow-lg">
-              <div className="text-gold font-bold text-xl mb-3">03 / Premium Networking</div>
-              <p className="text-white/80 text-sm leading-relaxed">
+            <div className="relative overflow-hidden bg-[#001333]/45 border border-white/10 rounded-2xl p-6 pb-14 hover:bg-[#001333]/70 hover:border-gold/30 hover:-translate-y-1 transition-all duration-300 shadow-lg isolate">
+              <div className="absolute top-0 right-0 w-16 h-16 bg-gold/5 rounded-bl-full pointer-events-none"></div>
+              <div className="absolute right-4 top-1 text-7xl md:text-8xl font-black text-white/5 select-none pointer-events-none -z-10">03</div>
+              <div className="mb-3 z-10 relative">
+                <h3 className="text-white font-extrabold text-sm uppercase tracking-wider">Premium Networking</h3>
+              </div>
+              <p className="text-white/80 text-sm leading-relaxed relative z-10">
                 Build meaningful partnerships and networks with ambitious professionals, entrepreneurs, and growth-minded peers.
               </p>
             </div>
-            <div className="bg-[#001333]/45 border border-white/10 rounded-2xl p-6 hover:bg-[#001333]/70 hover:border-gold/30 hover:-translate-y-1 transition-all duration-300 shadow-lg">
-              <div className="text-gold font-bold text-xl mb-3">04 / Holistic Wellness</div>
-              <p className="text-white/80 text-sm leading-relaxed">
+            <div className="relative overflow-hidden bg-[#001333]/45 border border-white/10 rounded-2xl p-6 pb-14 hover:bg-[#001333]/70 hover:border-gold/30 hover:-translate-y-1 transition-all duration-300 shadow-lg isolate">
+              <div className="absolute top-0 right-0 w-16 h-16 bg-gold/5 rounded-bl-full pointer-events-none"></div>
+              <div className="absolute right-4 top-1 text-7xl md:text-8xl font-black text-white/5 select-none pointer-events-none -z-10">04</div>
+              <div className="mb-3 z-10 relative">
+                <h3 className="text-white font-extrabold text-sm uppercase tracking-wider">Holistic Wellness</h3>
+              </div>
+              <p className="text-white/80 text-sm leading-relaxed relative z-10">
                 Unlock wellness conversations that prevent burnout and promote healthier, more balanced, and integrated living.
               </p>
             </div>
-            <div className="bg-[#001333]/45 border border-white/10 rounded-2xl p-6 hover:bg-[#001333]/70 hover:border-gold/30 hover:-translate-y-1 transition-all duration-300 shadow-lg">
-              <div className="text-gold font-bold text-xl mb-3">05 / Actionable Takeaways</div>
-              <p className="text-white/80 text-sm leading-relaxed">
+            <div className="relative overflow-hidden bg-[#001333]/45 border border-white/10 rounded-2xl p-6 pb-14 hover:bg-[#001333]/70 hover:border-gold/30 hover:-translate-y-1 transition-all duration-300 shadow-lg isolate">
+              <div className="absolute top-0 right-0 w-16 h-16 bg-gold/5 rounded-bl-full pointer-events-none"></div>
+              <div className="absolute right-4 top-1 text-7xl md:text-8xl font-black text-white/5 select-none pointer-events-none -z-10">05</div>
+              <div className="mb-3 z-10 relative">
+                <h3 className="text-white font-extrabold text-sm uppercase tracking-wider">Actionable Takeaways</h3>
+              </div>
+              <p className="text-white/80 text-sm leading-relaxed relative z-10">
                 Walk away with tangible templates, resources, and action steps you can immediately apply to your career and life.
               </p>
             </div>
@@ -614,7 +653,7 @@ export default function Home() {
       </section>
 
       {/* 7. Meet Esther Odejobi (Host Profile) */}
-      <section id="host" className="relative py-24 bg-gradient-to-b from-[#002B7A] to-[#001C5C] text-white border-t border-white/5">
+      <section id="host" className="relative py-24 bg-gradient-to-b from-[#004D36] to-[#002A1C] text-white border-t border-white/5">
         <div className="max-w-[1240px] mx-auto px-6 md:px-16 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-12 items-center">
             {/* Portrait Card */}
@@ -681,26 +720,26 @@ export default function Home() {
             {panelists.map((panelist, idx) => (
               <div
                 key={idx}
-                className="group rounded-2xl overflow-hidden bg-white border border-slate-100 shadow-lg hover:shadow-xl transition-all duration-300"
+                onClick={() => setActiveSpeaker(panelist)}
+                className="group relative aspect-[4/5] rounded-3xl overflow-hidden bg-gradient-to-b from-[#002A1C]/25 to-[#004D36]/25 border border-white/10 shadow-lg cursor-pointer flex items-center justify-center p-8 transition-all duration-350 hover:-translate-y-1 hover:shadow-2xl"
               >
-                <div className="relative aspect-[4/5] bg-gradient-to-b from-royal-blue/10 to-royal-blue/20 flex items-center justify-center p-8 overflow-hidden">
-                  <div className="relative w-40 h-40 transform group-hover:scale-105 transition-transform duration-500">
-                    <Image
-                      src={panelist.img}
-                      alt={panelist.role}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-                  <div className="absolute top-4 left-4 z-10">
-                    <span className="text-[10px] font-bold tracking-widest uppercase bg-royal-blue text-white px-2.5 py-1 rounded-full border border-white/20">
-                      TBA
-                    </span>
-                  </div>
+                {/* Panelist Monogram Graphic */}
+                <div className="relative w-40 h-40 transform group-hover:scale-102 transition-transform duration-500">
+                  <Image
+                    src={panelist.img}
+                    alt={panelist.role}
+                    fill
+                    className="object-contain"
+                  />
                 </div>
-                <div className="p-6">
-                  <h3 className="text-lg font-black uppercase text-[#001333] mb-2">{panelist.role}</h3>
-                  <p className="text-slate-600 text-sm leading-relaxed">{panelist.desc}</p>
+
+                {/* Overlay details */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#001333]/90 via-transparent to-transparent flex flex-col justify-end p-6 opacity-90 group-hover:opacity-100 transition-opacity">
+                  <h3 className="text-xl font-black uppercase text-white tracking-wide">{panelist.name}</h3>
+                  <p className="text-gold/90 text-xs font-semibold uppercase tracking-wider mt-1">{panelist.role}</p>
+                  <span className="inline-flex items-center gap-1.5 text-white/70 hover:text-gold text-xs font-bold uppercase tracking-wider mt-3 transition-colors">
+                    View Bio <span>→</span>
+                  </span>
                 </div>
               </div>
             ))}
@@ -709,7 +748,7 @@ export default function Home() {
       </section>
 
       {/* 9. Event Experience */}
-      <section id="experience" className="relative py-24 bg-gradient-to-b from-[#001C5C] to-[#002B7A] text-white">
+      <section id="experience" className="relative py-24 bg-gradient-to-b from-[#002A1C] to-[#004D36] text-white">
         <div className="max-w-[1240px] mx-auto px-6 md:px-16 w-full">
           <div className="max-w-2xl mb-16">
             <div className="flex items-center gap-3 font-bold text-xs md:text-sm tracking-widest uppercase text-gold mb-2">
@@ -732,10 +771,11 @@ export default function Home() {
               { t: "Curated Networking Blocks", d: "Structured matching to connect with accountability partners, peers, and mentors." },
               { t: "Brand Activations & Giveaways", d: "Exciting sponsored items, free template kits, and curated special moments." }
             ].map((exp, idx) => (
-              <div key={idx} className="border border-white/5 bg-white/5 hover:bg-white/10 p-6 rounded-2xl transition-all duration-300">
-                <span className="text-gold font-bold text-sm block mb-2">0{idx + 1}</span>
-                <h3 className="text-lg font-extrabold uppercase mb-2 text-white">{exp.t}</h3>
-                <p className="text-white/70 text-sm leading-relaxed">{exp.d}</p>
+              <div key={idx} className="relative overflow-hidden border border-white/5 bg-white/5 hover:bg-white/10 p-6 pb-14 rounded-2xl transition-all duration-300 isolate">
+                <div className="absolute top-0 right-0 w-16 h-16 bg-gold/5 rounded-bl-full pointer-events-none"></div>
+                <div className="absolute right-4 bottom-1 text-7xl md:text-8xl font-black text-white/5 select-none pointer-events-none -z-10">0{idx + 1}</div>
+                <h3 className="text-lg font-extrabold uppercase mb-2 text-white relative z-10">{exp.t}</h3>
+                <p className="text-white/70 text-sm leading-relaxed relative z-10">{exp.d}</p>
               </div>
             ))}
           </div>
@@ -864,8 +904,11 @@ export default function Home() {
               </h2>
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="relative w-12 h-12 shrink-0 bg-royal-blue/10 rounded-2xl flex items-center justify-center p-2">
-                    <Image src="/assets/Asset 14@4x.png" alt="Pin" width={32} height={32} className="object-contain" />
+                  <div className="w-12 h-12 shrink-0 bg-royal-blue/10 rounded-2xl flex items-center justify-center text-royal-blue">
+                    <svg className="w-6 h-6 text-royal-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path d="M12 2a8 8 0 00-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 00-8-8z" />
+                      <circle cx={12} cy={10} r={3} />
+                    </svg>
                   </div>
                   <div>
                     <h4 className="font-extrabold text-base text-[#001333] mb-1">The Zone, Gbagada</h4>
@@ -903,7 +946,7 @@ export default function Home() {
       </section>
 
       {/* 12. Tickets & Pricing Grid */}
-      <section id="tickets" className="relative py-24 bg-gradient-to-b from-[#002B7A] to-[#001C5C] text-white">
+      <section id="tickets" className="relative py-24 bg-gradient-to-b from-[#004D36] to-[#002A1C] text-white">
         <div className="max-w-[1240px] mx-auto px-6 md:px-16 w-full">
           <div className="max-w-2xl mb-16">
             <div className="flex items-center gap-3 font-bold text-xs md:text-sm tracking-widest uppercase text-gold mb-2">
@@ -1088,7 +1131,7 @@ export default function Home() {
       </section>
 
       {/* 14. FAQs Accordion */}
-      <section id="faq" className="relative py-24 bg-gradient-to-b from-[#001C5C] to-[#002B7A] text-white">
+      <section id="faq" className="relative py-24 bg-gradient-to-b from-[#002A1C] to-[#004D36] text-white">
         <div className="max-w-[800px] mx-auto px-6 w-full">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-3 font-bold text-xs md:text-sm tracking-widest uppercase text-gold mb-2">
@@ -1469,6 +1512,57 @@ export default function Home() {
                 </button>
               </div>
             )}
+          </div>
+        </div>
+      )}
+      {/* Speaker Bio Modal */}
+      {activeSpeaker && (
+        <div 
+          onClick={() => setActiveSpeaker(null)}
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#001333]/85 backdrop-blur-md transition-opacity cursor-pointer"
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className="relative bg-[#001c38] border border-white/15 w-full max-w-lg rounded-3xl p-6 md:p-8 overflow-hidden shadow-2xl animate-scale-in cursor-default"
+          >
+            {/* Corner decoration */}
+            <div className="absolute top-0 right-0 w-24 h-24 bg-gold/5 rounded-bl-full pointer-events-none"></div>
+
+            <button
+              onClick={() => setActiveSpeaker(null)}
+              className="absolute top-4 right-4 text-white/50 hover:text-white text-2xl font-light w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-all cursor-pointer"
+            >
+              ×
+            </button>
+
+            <div className="flex flex-col items-center text-center">
+              <div className="relative w-36 h-36 bg-gradient-to-b from-[#002A1C]/40 to-[#004D36]/40 border border-white/10 rounded-2xl flex items-center justify-center p-6 mb-6">
+                <div className="relative w-28 h-28">
+                  <Image
+                    src={activeSpeaker.img}
+                    alt={activeSpeaker.role}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+
+              <span className="font-bold text-xs uppercase tracking-widest text-gold">{activeSpeaker.role}</span>
+              <h3 className="text-2xl uppercase font-black text-white mt-1 mb-4">{activeSpeaker.name}</h3>
+
+              <div className="border-t border-white/10 w-full pt-4 mt-2">
+                <p className="text-white/80 text-sm leading-relaxed">
+                  {activeSpeaker.desc}
+                </p>
+              </div>
+
+              <button
+                onClick={() => setActiveSpeaker(null)}
+                className="mt-6 font-bold tracking-wide rounded-full px-6 py-2.5 text-xs bg-gold hover:bg-gold-hover text-[#001333] transition-colors cursor-pointer"
+              >
+                Close Bio
+              </button>
+            </div>
           </div>
         </div>
       )}
