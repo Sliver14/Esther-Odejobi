@@ -371,7 +371,7 @@ export default function Home() {
       {/* 2. Hero Section */}
       <header
         id="top"
-        className="relative min-h-[100vh] lg:min-h-[90vh] overflow-hidden flex flex-col bg-[radial-gradient(120%_80%_at_78%_-5%,rgba(255,255,255,0.15),transparent_55%),radial-gradient(90%_70%_at_10%_110%,rgba(0,104,74,0.45),transparent_60%),linear-gradient(160deg,#00684A_0%,#004D36_45%,#002A1C_100%)] pt-6 lg:py-8"
+        className="relative min-h-[100vh] lg:min-h-[90vh] overflow-hidden flex flex-col bg-[radial-gradient(120%_80%_at_78%_-5%,rgba(255,255,255,0.15),transparent_55%),radial-gradient(90%_70%_at_10%_110%,rgba(0,104,74,0.45),transparent_60%),linear-gradient(160deg,#00684A_0%,#004D36_45%,#002A1C_100%)] pt-16 lg:py-8"
       >
         {/* Angular mesh visual highlights */}
         <div aria-hidden="true" className="absolute inset-0 pointer-events-none mix-blend-screen bg-[linear-gradient(74deg,transparent_46%,rgba(255,255,255,0.02)_47%,rgba(255,255,255,0.02)_49%,transparent_50%),linear-gradient(110deg,transparent_60%,rgba(0,104,74,0.15)_61%,transparent_70%)]"></div>
@@ -389,7 +389,7 @@ export default function Home() {
         </span>
 
         {/* Hero Content grid */}
-        <div className="flex-1 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] items-center gap-6 max-w-[1240px] mx-auto w-full px-6 md:px-16 relative z-[15] pt-10 lg:pt-8 pb-4 lg:pb-0">
+        <div className="flex-1 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] items-center gap-0 max-w-[1240px] mx-auto w-full px-6 md:px-16 relative z-[15] pt-10 lg:pt-8 pb-4 lg:pb-0">
           <div className="relative z-[6] text-center lg:text-left flex flex-col justify-center items-center lg:items-start w-full">
             {/* <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-3">
               <span className="font-bold text-[0.72rem] tracking-widest uppercase text-white px-3 py-1 border border-white/20 rounded-full inline-flex items-center gap-1.5 bg-royal-blue/20">
