@@ -389,8 +389,8 @@ export default function Home() {
         </span>
 
         {/* Hero Content grid */}
-        <div className="flex-1 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] items-center gap-4 lg:gap-6 max-w-[1240px] mx-auto w-full px-6 md:px-16 relative z-[15] pt-14 lg:pt-8 pb-4 lg:pb-0">
-          <div className="relative z-[6] text-center lg:text-left flex flex-col justify-center items-center lg:items-start">
+        <div className="flex-1 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] items-center gap-6 max-w-[1240px] mx-auto w-full px-6 md:px-16 relative z-[15] pt-10 lg:pt-8 pb-4 lg:pb-0">
+          <div className="relative z-[6] text-center lg:text-left flex flex-col justify-center items-center lg:items-start w-full">
             {/* <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-3">
               <span className="font-bold text-[0.72rem] tracking-widest uppercase text-white px-3 py-1 border border-white/20 rounded-full inline-flex items-center gap-1.5 bg-royal-blue/20">
                 <span className="w-2 h-2 rounded-full bg-gold animate-pulse"></span>Money Date 2.0
@@ -400,69 +400,69 @@ export default function Home() {
               </span>
             </div> */}
 
-            <h1 className="text-2xl md:text-[2.6rem] leading-tight uppercase font-black text-white mt-1 mb-2 md:mb-3 drop-shadow-[0_15px_30px_rgba(0,0,0,0.3)]">
+            <h1 className="text-2xl min-[375px]:text-3xl md:text-[2.6rem] leading-tight uppercase font-black text-white mt-1 mb-2 md:mb-3 drop-shadow-[0_15px_30px_rgba(0,0,0,0.3)]">
               Beyond <span className="text-gold">Money:</span> Building a Life <span className="text-gold whitespace-nowrap">That Thrives.</span>
             </h1>
 
-            <p className="text-white/95 text-xs md:text-base font-medium tracking-wide mb-3 md:mb-4 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            <p className="text-white/95 text-xs md:text-base font-medium tracking-wide mb-3 md:mb-4 max-w-xl leading-relaxed">
               <span className="block mt-1 text-xs md:text-sm text-white/70">Bigger Conversations. Better Connections. Smarter Money Decisions.</span>
               {/* <span className="block mt-1 text-xs md:text-sm text-white/70">A premium biannual financial wellness experience merging wealth creation with intentional living.</span> */}
             </p>
 
             {/* Event Info Panel */}
-            <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-2 md:gap-3 mb-4 md:mb-6 text-white/90 max-w-2xl bg-white/5 border border-white/10 p-2.5 md:p-3 rounded-2xl backdrop-blur-md">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-gold/10 flex items-center justify-center text-gold shrink-0 border border-gold/20">
-                  <svg className="w-4.5 h-4.5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <div className="w-full grid grid-cols-3 gap-1 md:gap-3 mb-4 md:mb-6 text-white/90 max-w-2xl bg-white/5 border border-white/10 p-2 md:p-3 rounded-2xl backdrop-blur-md">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-1 md:gap-2">
+                <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-gold/10 flex items-center justify-center text-gold shrink-0 border border-gold/20">
+                  <svg className="w-4 h-4 md:w-4.5 md:h-4.5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <rect x={3} y={4} width={18} height={18} rx={2} ry={2} />
                     <line x1={16} y1={2} x2={16} y2={6} />
                     <line x1={8} y1={2} x2={8} y2={6} />
                     <line x1={3} y1={10} x2={21} y2={10} />
                   </svg>
                 </div>
-                <div className="text-left">
-                  <span className="font-extrabold text-xs block leading-tight">Saturday, 10th Oct 2026</span>
-                  <small className="text-[9px] text-white/60 font-semibold uppercase">Date</small>
+                <div className="text-center sm:text-left">
+                  <span className="font-extrabold text-[8px] min-[375px]:text-[10px] sm:text-xs block leading-tight">Sat, 10th Oct</span>
+                  <small className="text-[7px] min-[375px]:text-[8px] sm:text-[9px] text-white/60 font-semibold uppercase">Date</small>
                 </div>
               </div>
-              <div className="flex items-center gap-2 border-t sm:border-t-0 sm:border-x border-white/10 pt-1.5 sm:pt-0 sm:px-2">
-                <div className="w-8 h-8 rounded-lg bg-gold/10 flex items-center justify-center text-gold shrink-0 border border-gold/20">
-                  <svg className="w-4.5 h-4.5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-1 md:gap-2 border-x border-white/10 px-1 md:px-2">
+                <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-gold/10 flex items-center justify-center text-gold shrink-0 border border-gold/20">
+                  <svg className="w-4 h-4 md:w-4.5 md:h-4.5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <circle cx={12} cy={12} r={10} />
                     <polyline points="12 6 12 12 16 14" />
                   </svg>
                 </div>
-                <div className="text-left">
-                  <span className="font-extrabold text-xs block leading-tight">11:00 AM – 4:00 PM</span>
-                  <small className="text-[9px] text-white/60 font-semibold uppercase">Time</small>
+                <div className="text-center sm:text-left">
+                  <span className="font-extrabold text-[8px] min-[375px]:text-[10px] sm:text-xs block leading-tight">11 AM – 4 PM</span>
+                  <small className="text-[7px] min-[375px]:text-[8px] sm:text-[9px] text-white/60 font-semibold uppercase">Time</small>
                 </div>
               </div>
-              <div className="flex items-center gap-2 border-t sm:border-t-0 border-white/10 pt-1.5 sm:pt-0">
-                <div className="w-8 h-8 rounded-lg bg-gold/10 flex items-center justify-center text-gold shrink-0 border border-gold/20">
-                  <svg className="w-4.5 h-4.5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-1 md:gap-2">
+                <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-gold/10 flex items-center justify-center text-gold shrink-0 border border-gold/20">
+                  <svg className="w-4 h-4 md:w-4.5 md:h-4.5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path d="M12 2a8 8 0 00-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 00-8-8z" />
                     <circle cx={12} cy={10} r={3} />
                   </svg>
                 </div>
-                <div className="text-left">
-                  <span className="font-extrabold text-xs block leading-tight">The Zone, Gbagada</span>
-                  <small className="text-[9px] text-white/60 font-semibold uppercase">Lagos, Nigeria</small>
+                <div className="text-center sm:text-left">
+                  <span className="font-extrabold text-[8px] min-[375px]:text-[10px] sm:text-xs block leading-tight">The Zone, Gbagada</span>
+                  <small className="text-[7px] min-[375px]:text-[8px] sm:text-[9px] text-white/60 font-semibold uppercase">Venue</small>
                 </div>
               </div>
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-4 items-center">
+            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-2.5 sm:gap-4 items-center w-full max-w-[280px] sm:max-w-none">
               <button
                 onClick={() => setModalOpen(true)}
-                className="group inline-flex items-center gap-2.5 font-extrabold tracking-wide rounded-full px-5 py-2.5 md:px-6 md:py-3 text-xs md:text-sm bg-gold text-[#001333] shadow-[0_12px_25px_-8px_rgba(255,163,0,0.7)] hover:-translate-y-0.5 hover:shadow-[0_18px_35px_-6px_rgba(255,163,0,0.85)] transition-all cursor-pointer"
+                className="group inline-flex items-center justify-center gap-2 font-extrabold tracking-wide rounded-full px-5 py-3 text-xs sm:text-sm bg-gold text-[#001333] shadow-[0_12px_25px_-8px_rgba(255,163,0,0.7)] hover:-translate-y-0.5 hover:shadow-[0_18px_35px_-6px_rgba(255,163,0,0.85)] transition-all cursor-pointer w-full sm:w-auto"
               >
                 Reserve Your Seat
                 <span className="transition-transform group-hover:translate-x-1">→</span>
               </button>
               <a
                 href="#tickets"
-                className="font-bold text-xs text-white/80 hover:text-white border-b border-white/20 hover:border-gold pb-1 transition-all"
+                className="font-bold text-xs text-white/80 hover:text-white border-b border-white/20 hover:border-gold pb-1 transition-all text-center"
               >
                 View Ticket Options
               </a>
@@ -470,8 +470,8 @@ export default function Home() {
           </div>
 
           {/* Right Column: Premium Host Flyer Overlay */}
-          <div className="relative self-end h-full min-w-0 flex items-end justify-center lg:justify-end z-10 lg:z-30 mt-2 lg:mt-0">
-            <div className="relative w-full max-w-[240px] sm:max-w-[300px] lg:max-w-[380px] flex items-end justify-center">
+          <div className="relative self-end h-full min-w-0 flex items-end justify-center lg:justify-end z-10 lg:z-30 mt-4 lg:mt-0">
+            <div className="relative w-full max-w-[260px] min-[375px]:max-w-[300px] lg:max-w-[380px] flex items-end justify-center">
               <div className="absolute left-1/2 top-[40%] -translate-x-1/2 -translate-y-1/2 w-[110%] aspect-square rounded-full blur-[20px] bg-[radial-gradient(circle,rgba(0,104,74,0.5),transparent_65%)]"></div>
               <Image
                 src="/assets/esther2.png"
