@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import KitForm from "@/components/KitForm";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -19,19 +20,34 @@ export default function Home() {
 
   const gallerySlides = [
     {
-      img: "/assets/esther-about1.png",
-      alt: "Esther Odejobi presenting at Money Date 1.0",
+      img: "https://lh3.googleusercontent.com/d/1mDR5lRhMtSNmo8bm3ZmLX7MHARQlVSwB",
+      alt: "Money Date 1.0 session overview",
       caption: "Empowering Mindsets"
     },
     {
-      img: "/assets/esther-about.JPG",
-      alt: "Money Date 1.0 interactive session",
+      img: "https://lh3.googleusercontent.com/d/1oTJzajavIeYoWql-6uEtL0jIoajoCS44",
+      alt: "Money Date 1.0 interactive wealth coaching",
       caption: "Interactive Wealth Coaching"
     },
     {
-      img: "/assets/Asset 18@4x.png",
-      alt: "Money Date flyer design details",
+      img: "https://lh3.googleusercontent.com/d/1kOjgoLNW63z9DLyOu7G-WEvwKMVy0z3N",
+      alt: "Money Date 1.0 curated networking moments",
       caption: "Curated Networking Moments"
+    },
+    {
+      img: "https://lh3.googleusercontent.com/d/1FT9riX5i7HsughYxr7xOBqoHvISC7_K3",
+      alt: "Money Date 1.0 community interaction",
+      caption: "Intelligent Conversations"
+    },
+    {
+      img: "https://lh3.googleusercontent.com/d/1azelFIbTRyjO4c2a1jGJTyOgKF_ailPC",
+      alt: "Money Date 1.0 wellness and finance panel",
+      caption: "Holistic Wealth & Wellness"
+    },
+    {
+      img: "https://lh3.googleusercontent.com/d/1s0ZDt8rn3jLg2ubpa71rdAjDEwNKiCLT",
+      alt: "Money Date 1.0 registration and welcome",
+      caption: "A Warm Welcome"
     }
   ];
 
@@ -163,7 +179,16 @@ export default function Home() {
 
   const handlePartnerSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setTimeout(() => setPartnerFormSubmitted(true), 800);
+    const subject = encodeURIComponent(`Money Date 2.0 Partnership Request - ${partnerFormData.partnershipType}`);
+    const body = encodeURIComponent(
+      `Name: ${partnerFormData.name}\n` +
+      `Email: ${partnerFormData.email}\n` +
+      `Company: ${partnerFormData.company || "N/A"}\n` +
+      `Partnership Type: ${partnerFormData.partnershipType}\n\n` +
+      `Message:\n${partnerFormData.message}`
+    );
+    window.location.href = `mailto:partnerships@estherodejobi.com?subject=${subject}&body=${body}`;
+    setPartnerFormSubmitted(true);
   };
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
@@ -1346,26 +1371,7 @@ export default function Home() {
               <h4 className="text-lg font-black uppercase text-white mb-4">Newsletter</h4>
               <p className="text-white/60 text-sm mb-4">Get updates on schedule cycles, ticket discounts, and speaker releases.</p>
 
-              {!newsletterSubmitted ? (
-                <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
-                  <input
-                    type="email"
-                    required
-                    value={newsletterEmail}
-                    onChange={(e) => setNewsletterEmail(e.target.value)}
-                    placeholder="Enter your email"
-                    className="flex-1 px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-gold text-sm text-white"
-                  />
-                  <button
-                    type="submit"
-                    className="px-4 py-2.5 bg-gold hover:bg-gold-hover text-[#001333] font-bold rounded-xl text-sm transition-colors cursor-pointer"
-                  >
-                    Join
-                  </button>
-                </form>
-              ) : (
-                <div className="text-gold text-sm font-medium">✓ You've joined the mailing list!</div>
-              )}
+              <KitForm />
             </div>
           </div>
 
