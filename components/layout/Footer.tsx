@@ -15,12 +15,12 @@ const footerLinks = {
     { name: "Testimonials", href: "/#testimonials" },
     { name: "FAQ", href: "/#faq" },
     { name: "Free Resources", href: "/#free-resources" },
-    
+
     // { name: "Community", href: "/community" },
     // { name: "Coaching", href: "/coaching" },
     // { name: "Speaking", href: "/speaking" },
     // { name: "Collaborations", href: "/collaborations" },
-    
+
   ],
   services: [
     { name: "Wealth & Wellness Community", href: "/services" },
@@ -45,9 +45,9 @@ function TikTokIcon({ className }: { className?: string }) {
 }
 
 const socialLinks = [
-  { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/theesther.oj?igsh=ZTNyMHJxMTFmYzM4&utm_source=qr" },
-  { name: "YouTube", icon: Youtube, href: "https://youtube.com/@theesther_oj?si=_Go-DxlkRDEXMWSS" },
-  { name: "TikTok", icon: TikTokIcon, href: "https://www.tiktok.com/@theestherakintayo?_r=1&_t=ZS-92s7lx4Npis" },
+  { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/theesther.oj" },
+  { name: "YouTube", icon: Youtube, href: "https://www.youtube.com/@theesther_oj" },
+  { name: "TikTok", icon: TikTokIcon, href: "https://www.tiktok.com/@theesther.oj" },
 ];
 
 export function Footer() {
@@ -62,7 +62,7 @@ export function Footer() {
                 {/* <span className="text-primary-foreground font-heading font-bold text-lg">
                   E
                 </span> */}
-                <Image 
+                <Image
                   src="/estherodejobi1-046.png"
                   alt="Esther Odejobi Logo"
                   width={40}
