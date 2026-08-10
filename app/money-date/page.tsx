@@ -450,7 +450,7 @@ export default function Home() {
               BEYOND MONEY <span className="text-gold">•</span> FINANCIAL WELLNESS <span className="text-gold">•</span> INTENTIONAL LIVING
             </span>
             <span className="text-white font-extrabold uppercase text-xs md:text-sm tracking-[0.2em] inline-flex items-center gap-4">
-              SATURDAY, 10TH OCTOBER 2026 <span className="text-gold">•</span> THE ZONE, GBAGADA
+              SATURDAY, 10TH OCTOBER 2026 <span className="text-gold">•</span> BRIDGE BY OBSIDIAN, YABA
             </span>
           </div>
           <div className="flex items-center gap-12 shrink-0" aria-hidden="true">
@@ -461,7 +461,7 @@ export default function Home() {
               BEYOND MONEY <span className="text-gold">•</span> FINANCIAL WELLNESS <span className="text-gold">•</span> INTENTIONAL LIVING
             </span>
             <span className="text-white font-extrabold uppercase text-xs md:text-sm tracking-[0.2em] inline-flex items-center gap-4">
-              SATURDAY, 10TH OCTOBER 2026 <span className="text-gold">•</span> THE ZONE, GBAGADA
+              SATURDAY, 10TH OCTOBER 2026 <span className="text-gold">•</span> BRIDGE BY OBSIDIAN, YABA
             </span>
           </div>
         </div>
