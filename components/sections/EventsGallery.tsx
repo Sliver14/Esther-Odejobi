@@ -164,7 +164,19 @@ export function EventsGallery() {
             </div>
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 rounded-full bg-mountain-meadow" />
+              <span className="text-anti-flash-white/80">Investing & wealth creation</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 rounded-full bg-mountain-meadow" />
               <span className="text-anti-flash-white/80">Debt management strategies</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 rounded-full bg-mountain-meadow" />
+              <span className="text-anti-flash-white/80">Income growth & diversification</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 rounded-full bg-mountain-meadow" />
+              <span className="text-anti-flash-white/80">Money mindset & financial habits</span>
             </div>
           </div>
         </div>

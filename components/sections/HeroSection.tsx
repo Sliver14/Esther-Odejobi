@@ -7,7 +7,7 @@ export function HeroSection() {
   return (
     <>
       <section id="home" className="relative min-h-[85vh] flex items-center overflow-hidden pt-16 md:pt-0 bg-gradient-to-br from-mint/30 via-background to-secondary/50">
-        
+
         {/* Decorative shapes */}
         <div className="absolute top-20 right-10 w-16 h-16 text-primary opacity-20">
           <svg viewBox="0 0 100 100" fill="currentColor">
@@ -28,7 +28,7 @@ export function HeroSection() {
         </div>
 
         <div className="container-custom py-14 sm:py-16 md:py-28">
-          
+
           {/* Mobile: Image first | Desktop: Two-column grid */}
           <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-10 lg:gap-8 items-center">
 
@@ -99,7 +99,7 @@ export function HeroSection() {
             {/* Image Section */}
             <div className="relative flex justify-center animate-fade-up delay-200">
               <div className="relative">
-                
+
                 <div className="
                   w-[260px] h-[340px]
                   sm:w-[320px] sm:h-[400px]
@@ -110,7 +110,7 @@ export function HeroSection() {
                   shadow-xl
                 ">
                   <img
-                    src="/esther-hero.png"
+                    src="/assets/esther2.png"
                     alt="Esther Odejobi"
                     className="object-cover w-full h-full"
                   />
@@ -132,7 +132,7 @@ export function HeroSection() {
           <div className="bg-gradient-to-r from-primary via-accent to-primary rounded-2xl shadow-lg">
             <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-primary-foreground/20">
               {[
-                { number: "700+", label: "Lives Impacted" },
+                { number: "1,000+", label: "Lives Impacted" },
                 { number: "3+", label: "Years Experience" },
                 { number: "80+", label: "Sessions Delivered" },
                 { number: "4.9★", label: "Client Rating" },

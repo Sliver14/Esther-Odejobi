@@ -7,7 +7,6 @@ import KitForm from "@/components/KitForm";
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
   const [partnerModalOpen, setPartnerModalOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
@@ -59,12 +58,7 @@ export default function Home() {
   }, []);
 
   // Forms state
-  const [formData, setFormData] = useState({ name: "", email: "", ticketType: "General Admission" });
   const [partnerFormData, setPartnerFormData] = useState({ name: "", email: "", company: "", partnershipType: "Sponsorship", message: "" });
-  const [newsletterEmail, setNewsletterEmail] = useState("");
-
-  // Submission success states
-  const [formSubmitted, setFormSubmitted] = useState(false);
   const [partnerFormSubmitted, setPartnerFormSubmitted] = useState(false);
   const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
 
@@ -106,75 +100,9 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Load Paystack script
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://js.paystack.co/v1/inline.js";
-    script.async = true;
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
   const handlePartnerInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setPartnerFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const getTicketAmount = (ticketType: string) => {
-    if (ticketType.includes("35,000") || ticketType.includes("General")) return 35000;
-    if (ticketType.includes("32,000") || ticketType.includes("Early")) return 32000;
-    if (ticketType.includes("65,000") || ticketType.includes("Duo")) return 65000;
-    if (ticketType.includes("27,000") || ticketType.includes("Student")) return 27000;
-    if (ticketType.includes("150,000") || ticketType.includes("Growth")) return 150000;
-    return 35000;
-  };
-
-  const handlePaymentSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (typeof window !== "undefined" && (window as any).PaystackPop) {
-      const amount = getTicketAmount(formData.ticketType);
-      try {
-        const handler = (window as any).PaystackPop.setup({
-          key: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY || "pk_test_16d7a46e1669fe4842188267df812d8a56247df6",
-          email: formData.email,
-          amount: amount * 100,
-          currency: "NGN",
-          metadata: {
-            custom_fields: [
-              {
-                display_name: "Attendee Name",
-                variable_name: "attendee_name",
-                value: formData.name
-              },
-              {
-                display_name: "Ticket Type",
-                variable_name: "ticket_type",
-                value: formData.ticketType
-              }
-            ]
-          },
-          callback: function (response: any) {
-            setFormSubmitted(true);
-          },
-          onClose: function () {
-            alert("Transaction was not completed.");
-          }
-        });
-        handler.openIframe();
-      } catch (err) {
-        console.error("Paystack initialization failed:", err);
-        setTimeout(() => setFormSubmitted(true), 800);
-      }
-    } else {
-      setTimeout(() => setFormSubmitted(true), 800);
-    }
   };
 
   const handlePartnerSubmit = (e: React.FormEvent) => {
@@ -199,11 +127,7 @@ export default function Home() {
     }, 600);
   };
 
-  const resetForm = () => {
-    setFormData({ name: "", email: "", ticketType: "General Admission" });
-    setFormSubmitted(false);
-    setModalOpen(false);
-  };
+
 
   const resetPartnerForm = () => {
     setPartnerFormData({ name: "", email: "", company: "", partnershipType: "Sponsorship", message: "" });
@@ -349,13 +273,15 @@ export default function Home() {
 
         {/* CTA Register Button */}
         <div className="flex items-center gap-4">
-          <button
-            onClick={() => setModalOpen(true)}
+          <a
+            href="https://selar.com/072o57f400"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group hidden md:inline-flex items-center gap-2 font-extrabold tracking-wide rounded-full px-6 py-2.5 text-sm bg-gold hover:bg-gold-hover text-[#001333] shadow-[0_8px_20px_-6px_rgba(255,163,0,0.5)] hover:-translate-y-0.5 transition-all cursor-pointer"
           >
             Reserve Your Seat
             <span className="transition-transform group-hover:translate-x-1">→</span>
-          </button>
+          </a>
 
           {/* Hamburger menu for mobile */}
           <button
@@ -382,15 +308,15 @@ export default function Home() {
         <a onClick={() => setMobileMenuOpen(false)} href="#speakers" className="text-xl uppercase tracking-wider text-white hover:text-gold transition-colors">Speakers</a>
         <a onClick={() => setMobileMenuOpen(false)} href="#experience" className="text-xl uppercase tracking-wider text-white hover:text-gold transition-colors">Experience</a>
         <a onClick={() => setMobileMenuOpen(false)} href="#tickets" className="text-xl uppercase tracking-wider text-white hover:text-gold transition-colors">Tickets</a>
-        <button
-          onClick={() => {
-            setMobileMenuOpen(false);
-            setModalOpen(true);
-          }}
-          className="text-xl text-gold uppercase tracking-wider mt-4"
+        <a
+          onClick={() => setMobileMenuOpen(false)}
+          href="https://selar.com/072o57f400"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xl text-gold uppercase tracking-wider mt-4 text-center"
         >
           Reserve Your Seat
-        </button>
+        </a>
       </div>
 
       {/* 2. Hero Section */}
@@ -478,13 +404,15 @@ export default function Home() {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-2.5 sm:gap-4 items-center w-full max-w-[280px] sm:max-w-none">
-              <button
-                onClick={() => setModalOpen(true)}
-                className="group inline-flex items-center justify-center gap-2 font-extrabold tracking-wide rounded-full px-5 py-3 text-xs sm:text-sm bg-gold text-[#001333] shadow-[0_12px_25px_-8px_rgba(255,163,0,0.7)] hover:-translate-y-0.5 hover:shadow-[0_18px_35px_-6px_rgba(255,163,0,0.85)] transition-all cursor-pointer w-full sm:w-auto"
+              <a
+                href="https://selar.com/072o57f400"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center justify-center gap-2 font-extrabold tracking-wide rounded-full px-5 py-3 text-xs sm:text-sm bg-gold text-[#001333] shadow-[0_12px_25px_-8px_rgba(255,163,0,0.7)] hover:-translate-y-0.5 hover:shadow-[0_18px_35px_-6px_rgba(255,163,0,0.85)] transition-all cursor-pointer w-full sm:w-auto text-center"
               >
                 Reserve Your Seat
                 <span className="transition-transform group-hover:translate-x-1">→</span>
-              </button>
+              </a>
               <a
                 href="#tickets"
                 className="font-bold text-xs text-white/80 hover:text-white border-b border-white/20 hover:border-gold pb-1 transition-all text-center"
@@ -1057,15 +985,14 @@ export default function Home() {
                   Be among the first to secure your seat and enjoy premium early-bird pricing. Complete access to all main stage sections.
                 </p>
               </div>
-              <button
-                onClick={() => {
-                  setFormData(prev => ({ ...prev, ticketType: "Early Bird Pass (₦32,000)" }));
-                  setModalOpen(true);
-                }}
-                className="w-full py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold rounded-xl text-sm transition-all cursor-pointer mt-auto"
+              <a
+                href="https://selar.com/072o57f400"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold rounded-xl text-sm transition-all cursor-pointer mt-auto text-center block"
               >
                 Claim Early Bird
-              </button>
+              </a>
             </div>
 
             {/* General Admission */}
@@ -1088,15 +1015,14 @@ export default function Home() {
                   <li className="flex items-center gap-2">✓ Curated Money Date Gift Bag</li>
                 </ul>
               </div>
-              <button
-                onClick={() => {
-                  setFormData(prev => ({ ...prev, ticketType: "General Admission (₦35,000)" }));
-                  setModalOpen(true);
-                }}
-                className="w-full py-3.5 bg-gold hover:bg-gold-hover text-[#001333] font-extrabold rounded-xl text-sm transition-all cursor-pointer shadow-lg shadow-gold/20"
+              <a
+                href="https://selar.com/072o57f400"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3.5 bg-gold hover:bg-gold-hover text-[#001333] font-extrabold rounded-xl text-sm transition-all cursor-pointer shadow-lg shadow-gold/20 text-center block"
               >
                 Buy Ticket Now
-              </button>
+              </a>
             </div>
 
             {/* Duo Pass */}
@@ -1111,15 +1037,14 @@ export default function Home() {
                   Attend with a friend, co-worker, or accountability partner. Share the insights, network, and grow together at a discounted rate.
                 </p>
               </div>
-              <button
-                onClick={() => {
-                  setFormData(prev => ({ ...prev, ticketType: "Duo Pass (₦65,000)" }));
-                  setModalOpen(true);
-                }}
-                className="w-full py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold rounded-xl text-sm transition-all cursor-pointer mt-auto"
+              <a
+                href="https://selar.com/072o57f400"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold rounded-xl text-sm transition-all cursor-pointer mt-auto text-center block"
               >
                 Claim Duo Pass
-              </button>
+              </a>
             </div>
           </div>
 
@@ -1137,15 +1062,14 @@ export default function Home() {
                   Created for students who are ready to build solid financial and wellness habits early. A valid student ID will be required at check-in.
                 </p>
               </div>
-              <button
-                onClick={() => {
-                  setFormData(prev => ({ ...prev, ticketType: "Student Pass (₦27,000)" }));
-                  setModalOpen(true);
-                }}
-                className="w-full py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold rounded-xl text-sm transition-all cursor-pointer mt-auto"
+              <a
+                href="https://selar.com/072o57f400"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold rounded-xl text-sm transition-all cursor-pointer mt-auto text-center block"
               >
                 Claim Student Pass
-              </button>
+              </a>
             </div>
 
             {/* Growth Circle Pass */}
@@ -1160,15 +1084,14 @@ export default function Home() {
                   Building wealth is better together. Bring your friends, colleagues, or accountability partners and enjoy exclusive group savings while experiencing Money Date as a team.
                 </p>
               </div>
-              <button
-                onClick={() => {
-                  setFormData(prev => ({ ...prev, ticketType: "Growth Circle Pass (₦150,000)" }));
-                  setModalOpen(true);
-                }}
-                className="w-full py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold rounded-xl text-sm transition-all cursor-pointer mt-auto"
+              <a
+                href="https://selar.com/072o57f400"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold rounded-xl text-sm transition-all cursor-pointer mt-auto text-center block"
               >
                 Claim Group Pass
-              </button>
+              </a>
             </div>
           </div>
 
@@ -1303,13 +1226,15 @@ export default function Home() {
               Join 100 ambitious professionals, entrepreneurs, and leaders for an experience where wealth meets wellness, connection, and purpose.
             </span>
           </p>
-          <button
-            onClick={() => setModalOpen(true)}
+          <a
+            href="https://selar.com/072o57f400"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group inline-flex items-center gap-2.5 font-extrabold tracking-wide rounded-full px-8 py-4 text-base bg-gold text-[#001333] shadow-[0_12px_25px_-8px_rgba(255,163,0,0.7)] hover:-translate-y-0.5 hover:shadow-[0_18px_35px_-6px_rgba(255,163,0,0.85)] transition-all cursor-pointer"
           >
             Reserve Your Seat Today
             <span className="transition-transform group-hover:translate-x-1">→</span>
-          </button>
+          </a>
         </div>
       </section>
 
@@ -1425,168 +1350,7 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* 17. Interactive Registration Modal */}
-      {modalOpen && (
-        <div
-          onClick={resetForm}
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#004D36]/85 backdrop-blur-md transition-opacity duration-300 cursor-pointer overflow-y-auto"
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-4xl bg-white text-[#001333] rounded-3xl overflow-hidden shadow-2xl border border-slate-200/80 animate-scale-in cursor-default min-h-[580px] flex flex-col justify-between"
-          >
-            {/* Corner decoration */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-bl-full pointer-events-none"></div>
 
-            <button
-              onClick={resetForm}
-              className="absolute top-6 right-6 text-slate-400 hover:text-slate-700 focus:outline-none cursor-pointer text-2xl font-light w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-100 transition-all z-20"
-            >
-              ×
-            </button>
-
-            {!formSubmitted ? (
-              <div className="grid grid-cols-1 md:grid-cols-12 min-h-[580px] items-stretch">
-                {/* Left Column - Benefits & Event Details (Hidden on mobile) */}
-                <div className="hidden md:flex md:col-span-5 bg-slate-50 p-10 flex-col justify-between border-r border-slate-200/80 relative">
-                  <div>
-                    <span className="font-extrabold text-[10px] uppercase tracking-widest text-[#00684A] block mb-2">Money Date 2.0</span>
-                    <h4 className="text-xl uppercase font-black tracking-wide text-[#001333] leading-tight">Beyond Money Experience</h4>
-                    <p className="text-xs text-slate-600 mt-2">Join us in Gbagada for a transformational day merging wealth creation with intentional wellness.</p>
-
-                    <div className="mt-10 space-y-6">
-                      <div className="flex items-start gap-3">
-                        <div className="w-8 h-8 rounded-xl bg-[#00684A]/10 flex items-center justify-center text-[#00684A] shrink-0 mt-0.5 border border-[#00684A]/20">
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
-                          </svg>
-                        </div>
-                        <div>
-                          <h5 className="text-xs font-bold text-[#001333]">Full Access Pass</h5>
-                          <p className="text-[10px] text-slate-500">Entry to all keynote talks & expert speaker panels.</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <div className="w-8 h-8 rounded-xl bg-[#00684A]/10 flex items-center justify-center text-[#00684A] shrink-0 mt-0.5 border border-[#00684A]/20">
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                          </svg>
-                        </div>
-                        <div>
-                          <h5 className="text-xs font-bold text-[#001333]">Networking & Audits</h5>
-                          <p className="text-[10px] text-slate-500">Interactive speed networking and wellness clinics.</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <div className="w-8 h-8 rounded-xl bg-[#00684A]/10 flex items-center justify-center text-[#00684A] shrink-0 mt-0.5 border border-[#00684A]/20">
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                          </svg>
-                        </div>
-                        <div>
-                          <h5 className="text-xs font-bold text-[#001333]">Delegate Gift Bag</h5>
-                          <p className="text-[10px] text-slate-500">Exclusive curated stationery, toolkits and resources.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-10 pt-6 border-t border-slate-200 text-[10px] text-slate-500 space-y-1">
-                    <p>📍 The Zone, Gbagada, Lagos</p>
-                    <p>📅 Saturday, 10th October 2026</p>
-                  </div>
-                </div>
-
-                {/* Right Column - Form */}
-                <div className="col-span-12 md:col-span-7 p-6 sm:p-10 flex flex-col justify-center">
-                  <div className="mb-8">
-                    <span className="font-bold text-xs uppercase tracking-widest text-[#00684A]">Secure Checkout</span>
-                    <h3 className="text-2xl uppercase font-black text-[#001333] mt-1">Claim Your Pass</h3>
-                    <p className="text-xs text-slate-600 mt-1">Provide your registration details to start secure checkout.</p>
-                  </div>
-
-                  <form onSubmit={handlePaymentSubmit} className="space-y-5">
-                    <div>
-                      <label className="block text-xs font-bold uppercase text-slate-500 mb-1">Full Name</label>
-                      <input
-                        type="text"
-                        name="name"
-                        required
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        placeholder="e.g., Jane Doe"
-                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#00684A] text-sm text-slate-800 placeholder-slate-400 focus:bg-white transition-colors"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-bold uppercase text-slate-500 mb-1">Email Address</label>
-                      <input
-                        type="email"
-                        name="email"
-                        required
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        placeholder="e.g., you@domain.com"
-                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#00684A] text-sm text-slate-800 placeholder-slate-400 focus:bg-white transition-colors"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-bold uppercase text-slate-500 mb-1">Ticket Class Selected</label>
-                      <div className="relative">
-                        <select
-                          name="ticketType"
-                          value={formData.ticketType}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#00684A] text-sm text-slate-800 focus:bg-white transition-colors appearance-none cursor-pointer pr-10 font-semibold"
-                        >
-                          <option value="General Admission (₦35,000)">General Admission (₦35,000)</option>
-                          <option value="Early Bird Pass (₦32,000)">Early Bird Pass (₦32,000)</option>
-                          <option value="Duo Pass (₦65,000)">Duo Pass (₦65,000)</option>
-                          <option value="Student Pass (₦27,000)">Student Pass (₦27,000)</option>
-                          <option value="Growth Circle Pass (₦150,000)">Growth Circle Pass (₦150,000)</option>
-                        </select>
-                        <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-500">
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="pt-4">
-                      <button
-                        type="submit"
-                        className="w-full font-bold uppercase tracking-wider py-3.5 px-6 rounded-xl bg-gold hover:bg-gold-hover text-[#001333] transition-colors shadow-lg shadow-gold/20 cursor-pointer flex items-center justify-center gap-2"
-                      >
-                        <span>Pay ₦{getTicketAmount(formData.ticketType).toLocaleString()} via Paystack</span>
-                        <span>→</span>
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            ) : (
-              <div className="text-center p-16 max-w-lg mx-auto flex flex-col items-center justify-center min-h-[580px]">
-                <div className="w-20 h-20 bg-[#00684A]/10 text-[#00684A] rounded-full flex items-center justify-center text-4xl mb-6 font-bold border border-[#00684A]/25">
-                  ✓
-                </div>
-                <h3 className="text-3xl uppercase font-black text-[#001333] mb-3">Registration Confirmed!</h3>
-                <p className="text-sm text-slate-600 mb-8 leading-relaxed">
-                  Thank you, <strong>{formData.name}</strong>. Your payment was successful. We have sent a confirmation email to <strong>{formData.email}</strong> with your access details.
-                </p>
-                <button
-                  onClick={resetForm}
-                  className="font-bold text-sm bg-[#001333] hover:bg-[#002A1C] text-white rounded-full px-8 py-3 transition-colors focus:outline-none cursor-pointer"
-                >
-                  Close Window
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
       {/* 18. Interactive Partnership Modal */}
       {partnerModalOpen && (
         <div
