@@ -60,7 +60,6 @@ export default function Home() {
   // Forms state
   const [partnerFormData, setPartnerFormData] = useState({ name: "", email: "", company: "", partnershipType: "Sponsorship", message: "" });
   const [partnerFormSubmitted, setPartnerFormSubmitted] = useState(false);
-  const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
 
   // Countdown State
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -119,13 +118,7 @@ export default function Home() {
     setPartnerFormSubmitted(true);
   };
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setTimeout(() => {
-      setNewsletterSubmitted(true);
-      setNewsletterEmail("");
-    }, 600);
-  };
+
 
 
 
@@ -590,12 +583,14 @@ export default function Home() {
                   Whether you are a young professional, entrepreneur, business owner, corporate executive, recent graduate, or simply someone committed to growth—Money Date is your opportunity to move beyond money and start building a life that truly thrives..
                 </p>
               </div>
-              <button
-                onClick={() => setModalOpen(true)}
-                className="mt-4 w-full bg-gold hover:bg-gold-hover text-[#001333] font-bold text-xs py-2.5 rounded-lg transition-colors cursor-pointer text-center shadow-md shadow-gold/10"
+              <a
+                href="https://selar.com/072o57f400"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 w-full bg-gold hover:bg-gold-hover text-[#001333] font-bold text-xs py-2.5 rounded-lg transition-colors cursor-pointer text-center shadow-md shadow-gold/10 block"
               >
                 Reserve Seat Now
-              </button>
+              </a>
             </div>
           </div>
         </div>
