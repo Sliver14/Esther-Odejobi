@@ -8,6 +8,7 @@ import {
   FinalCTASection,
   FAQSection,
   EventsGallery,
+  MoneyDatePopup,
 } from "@/components/sections";
 
 export default function HomePage() {
@@ -22,6 +23,7 @@ export default function HomePage() {
       <FAQSection />
       <FreeResourcesSection />
       <FinalCTASection />
+      <MoneyDatePopup />
     </>
   );
 }

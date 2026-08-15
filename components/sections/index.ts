@@ -7,3 +7,4 @@ export { FreeResourcesSection } from "./FreeResourcesSection";
 export { FinalCTASection } from "./FinalCTASection";
 export { FAQSection } from "./FaqSection";
 export { EventsGallery } from "./EventsGallery";
+export { MoneyDatePopup } from "./MoneyDatePopup";
