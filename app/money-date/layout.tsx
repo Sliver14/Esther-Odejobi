@@ -8,11 +8,11 @@ const lexendDeca = Lexend_Deca({
 
 export const metadata = {
   title: "Money Date with Esther Odejobi 2.0 | Beyond Money: Building a Life That Thrives",
-  description: "Join us for Money Date 2.0 on Saturday, 10th October 2026 at The Zone, Gbagada, Lagos. The premium biannual financial wellness experience merging wealth growth, personal wellness, and intentional living.",
-  keywords: "Money Date, Esther Odejobi, Financial Growth, Wellness, Intentional Living, Finance Conference Nigeria, Gbagada, Lagos",
+  description: "Join us for Money Date 2.0 on Saturday, 10th October 2026 at Bridge by Obsidian, Yaba, Lagos. The premium biannual financial wellness experience merging wealth growth, personal wellness, and intentional living.",
+  keywords: "Money Date, Esther Odejobi, Financial Growth, Wellness, Intentional Living, Finance Conference Nigeria, Yaba, Lagos",
   openGraph: {
     title: "Money Date with Esther Odejobi 2.0",
-    description: "Beyond Money: Building a Life That Thrives. Saturday, 10th October 2026 at The Zone, Gbagada, Lagos. Register now.",
+    description: "Beyond Money: Building a Life That Thrives. Saturday, 10th October 2026 at Bridge by Obsidian, Yaba, Lagos. Register now.",
     type: "website",
   }
 };
