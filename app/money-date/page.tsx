@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { Crown } from "lucide-react";
 import KitForm from "@/components/KitForm";
 
 export default function Home() {
@@ -213,6 +214,26 @@ export default function Home() {
       q: "How do I become a sponsor or partner?",
       a: "Simply click 'Become a Partner' or contact our team via email (partnerships@estherodejobi.com) or phone."
     }
+  ];
+
+  // Lead Sponsors list (customize as needed)
+  const leadSponsors = [
+    { name: "Stable Foyers", logo: "/partners logo/stable_foyers.png" },
+  ];
+
+  // Supporting Partners list (customize as needed)
+  const supportingPartners = [
+    { name: "Tryb", logo: "/partners logo/tryb.png" },
+    { name: "Rehoboth Agri-Foods", logo: "/partners logo/rehoboth.png" },
+    { name: "OmaBooks", logo: "/partners logo/omabooks.png" },
+    { name: "Event Ninja", logo: "/partners logo/event_ninja.png" },
+    { name: "Totu Shot It", logo: "/partners logo/totu_shotit.png" },
+  ];
+
+  // Combined list for scrolling marquee with lead partner indicators
+  const allPartners = [
+    ...leadSponsors.map((p) => ({ ...p, isLead: true })),
+    ...supportingPartners.map((p) => ({ ...p, isLead: false })),
   ];
 
   return (
@@ -1098,32 +1119,76 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 13. Partners & Sponsors Grid */}
-      <section className="relative py-20 bg-slate-50 text-[#001333] border-t border-slate-100">
+      {/* 13. Partners & Sponsors */}
+      <section className="relative py-20 bg-slate-50 text-[#001333] border-t border-slate-100 overflow-hidden">
         <div className="max-w-[1240px] mx-auto px-6 md:px-16 w-full text-center">
-          <h3 className="font-extrabold text-sm uppercase text-slate-400 tracking-widest mb-8">
+          <h3 className="font-extrabold text-xs md:text-sm uppercase text-slate-400 tracking-widest mb-3">
             Partners & Sponsors
           </h3>
-          <p className="text-slate-600 max-w-xl mx-auto text-sm leading-relaxed mb-10">
-            Our partners make the Money Date experience possible. Together, we are creating meaningful impact by empowering individuals to build wealth and live intentionally.
+          <h2 className="text-2xl md:text-3xl font-black uppercase text-[#001333] tracking-tight mb-4">
+            Empowered by Visionary Brands
+          </h2>
+          <p className="text-slate-600 max-w-2xl mx-auto text-sm leading-relaxed mb-10">
+            Our sponsors and partners make the Money Date experience possible. Together, we are creating meaningful impact by empowering individuals to build wealth and live intentionally.
           </p>
 
-          <div className="relative w-full overflow-hidden py-4 mt-6">
-            <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none"></div>
+          {/* Unified Infinite Marquee */}
+          <div className="relative w-full overflow-hidden py-8">
+            <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none"></div>
 
-            <div className="flex w-max animate-marquee whitespace-nowrap gap-16 items-center">
-              <div className="flex items-center gap-16 shrink-0">
-                {[19, 20, 21, 22, 23].map((num) => (
-                  <div key={num} className="relative w-36 h-12 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                    <Image src={`/assets/Asset ${num}@4x.png`} alt={`Sponsor Logo ${num}`} fill className="object-contain" />
+            <div className="flex w-max animate-marquee whitespace-nowrap gap-10 md:gap-14 items-center">
+              <div className="flex items-center gap-10 md:gap-14 shrink-0">
+                {allPartners.map((partner, idx) => (
+                  <div
+                    key={`partner-1-${idx}`}
+                    className={`relative rounded-2xl p-5 h-24 sm:h-28 flex items-center justify-center transition-all duration-300 transform hover:scale-105 cursor-pointer ${
+                      partner.isLead
+                        ? "w-48 sm:w-56 bg-white border-2 border-amber-400 shadow-md ring-2 ring-amber-400/20"
+                        : "w-40 sm:w-48 bg-white/90 border border-slate-200/80 shadow-sm hover:shadow-md hover:bg-white"
+                    }`}
+                  >
+                    {partner.isLead && (
+                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-amber-500 to-gold text-[#001333] text-[9px] font-black uppercase tracking-wider shadow-sm border border-amber-400 whitespace-nowrap flex items-center gap-1">
+                        <Crown className="w-2.5 h-2.5 fill-[#001333]" />
+                        Lead Partner
+                      </span>
+                    )}
+                    <div className="relative w-full h-full flex items-center justify-center">
+                      <Image
+                        src={partner.logo}
+                        alt={`${partner.name}${partner.isLead ? " - Lead Sponsor" : " - Partner"}`}
+                        fill
+                        className="object-contain transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
                   </div>
                 ))}
               </div>
-              <div className="flex items-center gap-16 shrink-0" aria-hidden="true">
-                {[19, 20, 21, 22, 23].map((num) => (
-                  <div key={`dup-${num}`} className="relative w-36 h-12 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                    <Image src={`/assets/Asset ${num}@4x.png`} alt={`Sponsor Logo ${num}`} fill className="object-contain" />
+              <div className="flex items-center gap-10 md:gap-14 shrink-0" aria-hidden="true">
+                {allPartners.map((partner, idx) => (
+                  <div
+                    key={`partner-2-${idx}`}
+                    className={`relative rounded-2xl p-5 h-24 sm:h-28 flex items-center justify-center transition-all duration-300 transform hover:scale-105 cursor-pointer ${
+                      partner.isLead
+                        ? "w-48 sm:w-56 bg-white border-2 border-amber-400 shadow-md ring-2 ring-amber-400/20"
+                        : "w-40 sm:w-48 bg-white/90 border border-slate-200/80 shadow-sm hover:shadow-md hover:bg-white"
+                    }`}
+                  >
+                    {partner.isLead && (
+                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-amber-500 to-gold text-[#001333] text-[9px] font-black uppercase tracking-wider shadow-sm border border-amber-400 whitespace-nowrap flex items-center gap-1">
+                        <Crown className="w-2.5 h-2.5 fill-[#001333]" />
+                        Lead Partner
+                      </span>
+                    )}
+                    <div className="relative w-full h-full flex items-center justify-center">
+                      <Image
+                        src={partner.logo}
+                        alt={`${partner.name}${partner.isLead ? " - Lead Sponsor" : " - Partner"}`}
+                        fill
+                        className="object-contain transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
                   </div>
                 ))}
               </div>
@@ -1134,7 +1199,7 @@ export default function Home() {
             <span className="text-xs text-slate-500 font-bold uppercase block mb-3">Interested in collaborating?</span>
             <button
               onClick={() => setPartnerModalOpen(true)}
-              className="inline-flex items-center gap-2 bg-[#001333] hover:bg-royal-blue text-white text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-full transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 bg-[#001333] hover:bg-royal-blue text-white text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-full transition-colors cursor-pointer shadow-md hover:shadow-lg"
             >
               Become a Partner
             </button>
