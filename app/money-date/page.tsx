@@ -14,7 +14,10 @@ export default function Home() {
   const [activeSpeaker, setActiveSpeaker] = useState<{
     name: string;
     role: string;
+    tagline?: string;
     desc: string;
+    bio?: string[];
+    quote?: string;
     img: string;
   } | null>(null);
 
@@ -141,22 +144,42 @@ export default function Home() {
   // Panelists details
   const panelists = [
     {
-      name: "TBA",
-      role: "Personal Finance Educator",
-      desc: "Helping individuals build healthier financial habits and create sustainable wealth through practical financial education.",
-      img: "/assets/Asset 8@4x.png" // Green container, gold MD monogram
+      name: "Oluchukwu Chiadika",
+      role: "Founder, YPFG | Fintech Growth Leader",
+      tagline: "Personal Finance Educator & 2-Time Author",
+      desc: "Helping people make sense of money through a simplicity-first approach to personal finance, building a community of over 70,000 people along the way.",
+      bio: [
+        "Oluchukwu Chiadika is the Founder of Your Personal Finance Girl (YPFG), a Fintech Growth Leader, and a two-time author.",
+        "For over seven years, Oluchukwu has helped people make sense of money through a simplicity-first approach to personal finance, building a community of over 70,000 people along the way.",
+        "With over 180 speaking engagements and experience across finance, technology, and human behaviour, she brings a practical perspective on turning financial knowledge into action."
+      ],
+      quote: "Because knowing what to do with your money and actually doing it are two very different things!",
+      img: "/facilatator/Oluchukwu finance.png"
     },
     {
-      name: "TBA",
-      role: "Wellness & Nutrition Expert",
-      desc: "Passionate about promoting healthier lifestyles through nutrition, preventive healthcare, and holistic wellness.",
-      img: "/assets/Asset 9@4x.png" // Dark container, gold MD monogram
+      name: "Korede O. Ayeni",
+      role: "Founder & CEO, Agrolocale",
+      tagline: "Agribusiness & Real Estate Entrepreneur",
+      desc: "Building upscale farm estates, resort experiences, and creating strategic agricultural investment opportunities.",
+      bio: [
+        "Korede O. Ayeni is the Founder & CEO of Agrolocale, an agribusiness firm building upscale farm estates and farm resort experiences.",
+        "With nearly a decade of experience across project management, branding, sales, marketing, and business operations, Korede has built his work around turning ideas into businesses that work.",
+        "From running solar-powered farms across Ogun and Oyo States to creating investment opportunities around agriculture, his work sits at the intersection of business, investment, innovation, and impact."
+      ],
+      img: "/facilatator/Korede Ayeni agri expert.png"
     },
     {
-      name: "TBA",
-      role: "Real Estate & Agribusiness Entrepreneur",
-      desc: "An entrepreneur committed to creating sustainable wealth through real estate, agriculture, and strategic business investments.",
-      img: "/assets/Asset 11@4x.png" // Gold container, dark MD monogram
+      name: "Ademiju Fakoya",
+      role: "Registered Associate Nutritionist",
+      tagline: "Nutrition Educator & Wellness Advocate",
+      desc: "Passionate about helping people move beyond restrictive diet culture towards practical, sustainable, and evidence-based wellness.",
+      bio: [
+        "Ademiju Fakoya is a Registered Associate Nutritionist, Nutrition Educator, and Wellness Advocate.",
+        "With over six years of experience across clinical and public health nutrition, Ademiju is passionate about helping people move beyond restrictive diet culture and towards practical, sustainable wellness.",
+        "Through NutritionwithAdemi and The Carbo Club, she makes evidence-based nutrition simpler and more relatable."
+      ],
+      quote: "Because what is the point of building wealth if your health is constantly paying the price?",
+      img: "/facilatator/Wellness Ademiju Fakoya.png"
     }
   ];
 
@@ -746,25 +769,29 @@ export default function Home() {
               <div
                 key={idx}
                 onClick={() => setActiveSpeaker(panelist)}
-                className="group relative aspect-[4/5] rounded-3xl overflow-hidden bg-gradient-to-b from-[#002A1C]/25 to-[#004D36]/25 border border-white/10 shadow-lg cursor-pointer flex items-center justify-center p-8 transition-all duration-350 hover:-translate-y-1 hover:shadow-2xl"
+                className="group relative aspect-[3/4] sm:aspect-[4/5] rounded-3xl overflow-hidden bg-gradient-to-b from-[#00382B] via-[#002A1C] to-[#001333] border border-white/10 shadow-xl cursor-pointer transition-all duration-350 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.35)] hover:border-gold/40 flex flex-col justify-end"
               >
-                {/* Panelist Monogram Graphic */}
-                <div className="relative w-40 h-40 transform group-hover:scale-102 transition-transform duration-500">
+                {/* Background ambient lighting/glow */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(0,104,74,0.45),transparent_70%)] pointer-events-none"></div>
+
+                {/* Speaker Portrait */}
+                <div className="absolute inset-0 w-full h-full transform group-hover:scale-105 transition-transform duration-500 ease-out">
                   <Image
                     src={panelist.img}
-                    alt={panelist.role}
+                    alt={panelist.name}
                     fill
-                    className="object-contain"
+                    className="object-cover object-top"
                   />
                 </div>
 
-                {/* Overlay details */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#001333]/90 via-transparent to-transparent flex flex-col justify-end p-6 opacity-90 group-hover:opacity-100 transition-opacity">
-                  <h3 className="text-xl font-black uppercase text-white tracking-wide">{panelist.name}</h3>
-                  <p className="text-gold/90 text-xs font-semibold uppercase tracking-wider mt-1">{panelist.role}</p>
-                  <span className="inline-flex items-center gap-1.5 text-white/70 hover:text-gold text-xs font-bold uppercase tracking-wider mt-3 transition-colors">
-                    View Bio <span>→</span>
-                  </span>
+                {/* Gradient scrim for readable text */}
+                <div className="relative z-10 bg-gradient-to-t from-[#001333] via-[#001333]/85 to-transparent p-6 pt-20 flex flex-col justify-end">
+                  <span className="text-gold font-bold text-[11px] uppercase tracking-widest">{panelist.role}</span>
+                  <h3 className="text-xl md:text-2xl font-black uppercase text-white tracking-wide mt-1 drop-shadow-sm">{panelist.name}</h3>
+                  <p className="text-white/80 text-xs line-clamp-2 mt-2 leading-relaxed">{panelist.desc}</p>
+                  <div className="inline-flex items-center gap-1.5 text-gold text-xs font-extrabold uppercase tracking-wider mt-3.5 group-hover:translate-x-1 transition-transform">
+                    View Full Bio <span>→</span>
+                  </div>
                 </div>
               </div>
             ))}
@@ -1537,42 +1564,54 @@ export default function Home() {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative bg-[#001c38] border border-white/15 w-full max-w-lg rounded-3xl p-6 md:p-8 overflow-hidden shadow-2xl animate-scale-in cursor-default"
+            className="relative bg-[#00182E] border border-white/15 w-full max-w-lg rounded-3xl p-6 md:p-8 overflow-hidden shadow-2xl animate-scale-in cursor-default max-h-[90vh] overflow-y-auto no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           >
             {/* Corner decoration */}
-            <div className="absolute top-0 right-0 w-24 h-24 bg-gold/5 rounded-bl-full pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-28 h-28 bg-gold/10 rounded-bl-full pointer-events-none blur-sm"></div>
 
             <button
               onClick={() => setActiveSpeaker(null)}
-              className="absolute top-4 right-4 text-white/50 hover:text-white text-2xl font-light w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-all cursor-pointer"
+              className="absolute top-4 right-4 text-white/60 hover:text-white text-2xl font-light w-9 h-9 flex items-center justify-center rounded-full hover:bg-white/10 transition-all cursor-pointer z-20"
+              aria-label="Close modal"
             >
               ×
             </button>
 
             <div className="flex flex-col items-center text-center">
-              <div className="relative w-36 h-36 bg-gradient-to-b from-[#002A1C]/40 to-[#004D36]/40 border border-white/10 rounded-2xl flex items-center justify-center p-6 mb-6">
-                <div className="relative w-28 h-28">
-                  <Image
-                    src={activeSpeaker.img}
-                    alt={activeSpeaker.role}
-                    fill
-                    className="object-contain"
-                  />
-                </div>
+              {/* Speaker Avatar */}
+              <div className="relative w-32 h-32 md:w-36 md:h-36 rounded-2xl overflow-hidden bg-gradient-to-b from-[#00382B] to-[#001810] border-2 border-gold/30 shadow-xl mb-4 shrink-0">
+                <Image
+                  src={activeSpeaker.img}
+                  alt={activeSpeaker.name}
+                  fill
+                  className="object-cover object-top"
+                />
               </div>
 
               <span className="font-bold text-xs uppercase tracking-widest text-gold">{activeSpeaker.role}</span>
-              <h3 className="text-2xl uppercase font-black text-white mt-1 mb-4">{activeSpeaker.name}</h3>
+              <h3 className="text-2xl md:text-3xl uppercase font-black text-white mt-1 mb-4">{activeSpeaker.name}</h3>
 
-              <div className="border-t border-white/10 w-full pt-4 mt-2">
-                <p className="text-white/80 text-sm leading-relaxed">
-                  {activeSpeaker.desc}
-                </p>
+              <div className="border-t border-white/10 w-full pt-4 text-left space-y-3">
+                {activeSpeaker.bio && activeSpeaker.bio.length > 0 ? (
+                  activeSpeaker.bio.map((paragraph, i) => (
+                    <p key={i} className="text-white/85 text-sm leading-relaxed">
+                      {paragraph}
+                    </p>
+                  ))
+                ) : (
+                  <p className="text-white/85 text-sm leading-relaxed">{activeSpeaker.desc}</p>
+                )}
+
+                {activeSpeaker.quote && (
+                  <blockquote className="border-l-4 border-gold pl-4 py-2 text-gold font-medium italic text-xs md:text-sm mt-4 bg-gold/10 rounded-r-xl">
+                    "{activeSpeaker.quote}"
+                  </blockquote>
+                )}
               </div>
 
               <button
                 onClick={() => setActiveSpeaker(null)}
-                className="mt-6 font-bold tracking-wide rounded-full px-6 py-2.5 text-xs bg-gold hover:bg-gold-hover text-[#001333] transition-colors cursor-pointer"
+                className="mt-6 font-bold tracking-wide rounded-full px-8 py-2.5 text-xs bg-gold hover:bg-gold-hover text-[#001333] transition-all shadow-md shadow-gold/20 cursor-pointer"
               >
                 Close Bio
               </button>
