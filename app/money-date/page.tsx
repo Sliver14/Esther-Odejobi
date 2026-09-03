@@ -1142,16 +1142,15 @@ export default function Home() {
                 {allPartners.map((partner, idx) => (
                   <div
                     key={`partner-1-${idx}`}
-                    className={`relative rounded-2xl p-5 h-24 sm:h-28 flex items-center justify-center transition-all duration-300 transform hover:scale-105 cursor-pointer ${
-                      partner.isLead
-                        ? "w-48 sm:w-56 bg-white border-2 border-amber-400 shadow-md ring-2 ring-amber-400/20"
-                        : "w-40 sm:w-48 bg-white/90 border border-slate-200/80 shadow-sm hover:shadow-md hover:bg-white"
-                    }`}
+                    className={`relative rounded-2xl p-5 h-24 sm:h-28 flex items-center justify-center transition-all duration-300 transform hover:scale-105 cursor-pointer ${partner.isLead
+                      ? "w-48 sm:w-56 bg-white border-2 border-amber-400 shadow-md ring-2 ring-amber-400/20"
+                      : "w-40 sm:w-48 bg-white/90 border border-slate-200/80 shadow-sm hover:shadow-md hover:bg-white"
+                      }`}
                   >
                     {partner.isLead && (
                       <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-amber-500 to-gold text-[#001333] text-[9px] font-black uppercase tracking-wider shadow-sm border border-amber-400 whitespace-nowrap flex items-center gap-1">
                         <Crown className="w-2.5 h-2.5 fill-[#001333]" />
-                        Lead Partner
+                        Lead Sponsor
                       </span>
                     )}
                     <div className="relative w-full h-full flex items-center justify-center">
@@ -1169,16 +1168,15 @@ export default function Home() {
                 {allPartners.map((partner, idx) => (
                   <div
                     key={`partner-2-${idx}`}
-                    className={`relative rounded-2xl p-5 h-24 sm:h-28 flex items-center justify-center transition-all duration-300 transform hover:scale-105 cursor-pointer ${
-                      partner.isLead
-                        ? "w-48 sm:w-56 bg-white border-2 border-amber-400 shadow-md ring-2 ring-amber-400/20"
-                        : "w-40 sm:w-48 bg-white/90 border border-slate-200/80 shadow-sm hover:shadow-md hover:bg-white"
-                    }`}
+                    className={`relative rounded-2xl p-5 h-24 sm:h-28 flex items-center justify-center transition-all duration-300 transform hover:scale-105 cursor-pointer ${partner.isLead
+                      ? "w-48 sm:w-56 bg-white border-2 border-amber-400 shadow-md ring-2 ring-amber-400/20"
+                      : "w-40 sm:w-48 bg-white/90 border border-slate-200/80 shadow-sm hover:shadow-md hover:bg-white"
+                      }`}
                   >
                     {partner.isLead && (
                       <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-amber-500 to-gold text-[#001333] text-[9px] font-black uppercase tracking-wider shadow-sm border border-amber-400 whitespace-nowrap flex items-center gap-1">
                         <Crown className="w-2.5 h-2.5 fill-[#001333]" />
-                        Lead Partner
+                        Lead Sponsor
                       </span>
                     )}
                     <div className="relative w-full h-full flex items-center justify-center">
