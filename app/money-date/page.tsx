@@ -377,7 +377,7 @@ export default function Home() {
                   </svg>
                 </div>
                 <div className="text-center sm:text-left">
-                  <span className="font-extrabold text-[8px] min-[375px]:text-[10px] sm:text-xs block leading-tight">11 AM – 4 PM</span>
+                  <span className="font-extrabold text-[8px] min-[375px]:text-[10px] sm:text-xs block leading-tight">11 AM – 3 PM</span>
                   <small className="text-[7px] min-[375px]:text-[8px] sm:text-[9px] text-white/60 font-semibold uppercase">Time</small>
                 </div>
               </div>
@@ -1245,8 +1245,8 @@ export default function Home() {
                 A premium biannual financial wellness experience for ambitious people to build wealth, prioritize well-being, and live intentionally.
               </p>
               <div className="space-y-3 text-sm text-white/60">
-                <a 
-                  href="mailto:moneydate@estherodejobi.com" 
+                <a
+                  href="mailto:moneydate@estherodejobi.com"
                   className="flex items-center gap-3 hover:text-gold transition-colors w-fit"
                 >
                   <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-gold border border-white/10 shrink-0">
@@ -1256,10 +1256,10 @@ export default function Home() {
                   </div>
                   <span>moneydate@estherodejobi.com</span>
                 </a>
-                <a 
-                  href="https://maps.google.com/?q=Bridge%20by%20Obsidian,%20Yaba,%20Lagos" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href="https://maps.google.com/?q=Bridge%20by%20Obsidian,%20Yaba,%20Lagos"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-3 hover:text-gold transition-colors w-fit"
                 >
                   <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-gold border border-white/10 shrink-0">
