@@ -219,7 +219,7 @@ export default function Home() {
     },
     {
       q: "How much is the ticket?",
-      a: "The standard General Admission ticket is ₦35,000 per attendee. We also offer Early Bird pricing (₦32,000) for early registrations, as well as Duo Pass (₦65,000), Student Pass (₦27,000), and Group Pass / Growth Circle (₦150,000) options for those attending with accountability partners."
+      a: "The standard General Admission ticket is ₦35,000 per attendee. We also offer Duo Pass (₦65,000), Student Pass (₦27,000), and Group Pass / Growth Circle (₦150,000) options for those attending with accountability partners."
     },
     {
       q: "Will there be networking opportunities?",
@@ -251,6 +251,7 @@ export default function Home() {
     { name: "OmaBooks", logo: "/partners logo/omabooks.png" },
     { name: "Event Ninja", logo: "/partners logo/event_ninja.png" },
     { name: "Totu Shot It", logo: "/partners logo/totu_shotit.png" },
+    { name: "MorezHub", logo: "/partners logo/morezhub.png" },
   ];
 
   // Combined list for scrolling marquee with lead partner indicators
@@ -1015,32 +1016,10 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-            {/* Early Bird */}
-            <div className="border border-white/15 bg-white/5 rounded-3xl p-8 hover:border-royal-blue transition-all flex flex-col justify-between h-full">
-              <div>
-                <div className="inline-block bg-royal-blue/20 border border-royal-blue/30 rounded-full px-3 py-1 text-xs font-bold text-gold uppercase tracking-wider mb-4">
-                  Limited Offer
-                </div>
-                <h3 className="text-xl font-extrabold uppercase mb-2 text-white">Early Bird Pass</h3>
-                <div className="text-3xl font-black text-gold mb-4">₦32,000</div>
-                <p className="text-white/70 text-sm leading-relaxed mb-6">
-                  Be among the first to secure your seat and enjoy premium early-bird pricing. Complete access to all main stage sections.
-                </p>
-              </div>
-              <a
-                href="https://selar.com/072o57f400"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold rounded-xl text-sm transition-all cursor-pointer mt-auto text-center block"
-              >
-                Claim Early Bird
-              </a>
-            </div>
-
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
             {/* General Admission */}
-            <div className="border-2 border-gold bg-royal-blue rounded-3xl p-8 relative shadow-2xl flex flex-col justify-between h-full transform lg:-translate-y-4">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold text-[#001333] px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
+            <div className="border-2 border-gold bg-royal-blue rounded-3xl p-8 relative shadow-2xl flex flex-col justify-between h-full transform lg:-translate-y-2">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold text-[#001333] px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest whitespace-nowrap">
                 Recommended
               </div>
               <div>
@@ -1062,7 +1041,7 @@ export default function Home() {
                 href="https://selar.com/072o57f400"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3.5 bg-gold hover:bg-gold-hover text-[#001333] font-extrabold rounded-xl text-sm transition-all cursor-pointer shadow-lg shadow-gold/20 text-center block"
+                className="w-full py-3.5 bg-gold hover:bg-gold-hover text-[#001333] font-extrabold rounded-xl text-sm transition-all cursor-pointer shadow-lg shadow-gold/20 text-center block mt-auto"
               >
                 Buy Ticket Now
               </a>
@@ -1089,10 +1068,7 @@ export default function Home() {
                 Claim Duo Pass
               </a>
             </div>
-          </div>
 
-          {/* Student Pass & Growth Circle in Second Row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 max-w-4xl mx-auto items-stretch">
             {/* Student Pass */}
             <div className="border border-white/15 bg-white/5 rounded-3xl p-8 hover:border-royal-blue transition-all flex flex-col justify-between h-full">
               <div>
